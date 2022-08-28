@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "api-mock": "json-server --watch api-mock/api.json"
+
   },
   "dependencies": {
     "core-js": "^3.8.3",
