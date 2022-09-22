@@ -67,11 +67,11 @@
                     </div>
 
                     <div class="row mt-3">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <input type="text" class="form-control" placeholder="Bairro">
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <input type="text" class="form-control" placeholder="Cidade">
                         </div>
 
@@ -79,7 +79,7 @@
                             <input type="text" class="form-control" placeholder="Estado">
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-1">
                             <input type="text" class="form-control" placeholder="UF">
                         </div>
                     </div>
