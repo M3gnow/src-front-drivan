@@ -1,6 +1,6 @@
 <template>
     <div class="container styleCardTitle col-md-8 mt-5">
-        <h3>Cadastro Drivan</h3>
+        <h3>Cadastro Drivan - Condutor</h3>
     </div>
 
     <div class="container mt-3">
