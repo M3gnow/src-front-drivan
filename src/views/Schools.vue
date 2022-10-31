@@ -92,11 +92,6 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control" placeholder="Complemento">
                         </div>
-
-                        <div class="col-md-3 mt-2 mainSchool">
-                            <h4>Unidade principal:</h4>
-                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,203 @@
+<template>
+    <div class="container mt-3">
+        <div id="conductor-form">
+            <div>
+                <h2>Dados Pessoais</h2>
+            </div>
+
+            <div class="input-container">
+                <label for="name">Nome do condutor</label>
+                <input type="text" id="name" name="name" v-model="profileConductor.name" placeholder="Digite seu nome">
+            </div>
+
+            <div class="input-container">
+                <label for="name">CPF do condutor</label>
+                <input type="text" id="cpf" name="cpf" v-model="profileConductor.cpf" placeholder="Digite seu CPF">
+            </div>
+
+            <div class="input-container">
+                <label for="name">CNH do condutor</label>
+                <input type="text" id="cnh" name="cnh" v-model="profileConductor.cnh" placeholder="Digite sua CNH">
+            </div>
+
+            <div class="input-container">
+                <label for="name">E-mail do condutor</label>
+                <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Celular do condutor</label>
+                <input type="text" id="phone" name="phone" v-model="profileConductor.phone" placeholder="(XX)XXXXX-XXXX">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Senha de acesso Drivan</label>
+                <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Confirme sua senha</label>
+                <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
+            </div>
+
+            <div>
+                <h2>Informações do seu Veículo</h2>
+            </div>
+
+            <div class="input-container">
+                <label for="name">Modelo do veículo</label>
+                <input type="text" id="modelVehicle" name="modelVehicle" v-model="vehicle.modelVehicle" placeholder="Digite o modelo">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Placa do veículo</label>
+                <input type="text" id="boardVehicle" name="boardVehicle" v-model="vehicle.boardVehicle" placeholder="Digite a placa">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Cor do veículo</label>
+                <input type="text" id="colorVehicle" name="colorVehicle" v-model="vehicle.colorVehicle" placeholder="Digite a cor">
+            </div>
+
+            <div class="input-container">
+                <label for="name">Capacidade do veículo</label>
+                <input type="text" id="capacityVehicle" name="capacityVehicle" v-model="vehicle.capacityVehicle" placeholder="Digite a capacidade">
+            </div>
+
+            <div class="mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-light me-3" @click="cancel()">Cancelar</button>
+                <button type="submit" class="btn btn-warning" @click="sendCreate()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+
+export default {
+    
+    name: 'ConductorForm',
+    data: function() {
+        const vehicle = {
+            modelVehicle: '',
+            boardVehicle: '',
+            colorVehicle: '',
+            capacityVehicle: '',
+        };
+
+        const profileConductor = {
+            name: '',
+            cpf: '',
+            cnh: '',
+            email: '',
+            phone: '',
+            password: '',
+            secondPassword: '',
+        };
+
+        return { vehicle, profileConductor }
+    },
+    methods: {
+        async sendCreate() {
+            if (!this.checkFieldsProfileConductor(this.profileConductor)) {
+                return alert('Falta dados do condutor')
+            }
+
+            if (!this.checkBothPasswords(this.profileConductor)) {
+                return alert('Senhas estão diferentes')
+            }
+
+            if (!this.checkFieldsVehicle(this.vehicle)) {
+                return alert('Falta dados do veiculo')
+            }
+
+            if (!this.validatePassword(this.profileConductor.password)) {
+                return alert('Senha formato incorreto')
+            }
+
+            if (!this.validatePassword(this.profileConductor.secondPassword)) {
+                return alert('Senha formato incorreto')
+            }
+
+            const conductor = { ...this.vehicle, ...this.profileConductor };
+
+            await axios.post('http://localhost:8081/conductor', conductor)
+
+            return alert('Cadastro realizado com sucesso!')
+        },
+        cancel() {
+            // console.log('cancel form')
+        },
+        checkFieldsVehicle (vehicle) {
+            for (const field in vehicle) {
+                if (!vehicle[field]) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+        checkFieldsProfileConductor(conductor) {
+            for (const field in conductor) {
+                if (!conductor[field]) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+        checkBothPasswords(conductor) {
+            if (conductor.password === conductor.secondPassword) {
+                return true;
+            }
+
+            return false;
+        },
+        validatePassword(password) {
+            const regexValidate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
+
+            if (regexValidate.test(password)) {
+                return truel
+            }
+
+            return false;
+        }
+
+
+    }
+
+}
+</script>
+
+<style>
+    #conductor-form { 
+        max-width: 500px;
+        margin: 0px auto;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        border-left: 4px solid #FCBA03;
+        padding: 5px 10px;
+    }
+
+    label {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        
+        color: #222;
+        
+    }
+
+    input {
+        padding: 5px 10px;
+        width: 400px !important;
+    }
+
+
+</style>
