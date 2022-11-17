@@ -64,7 +64,13 @@
 
                 <div class="input-container">
                     <label for="capacityVehicle">Capacidade do veículo</label>
-                    <input type="text" id="capacityVehicle" name="capacityVehicle" v-model="vehicle.capacityVehicle" placeholder="Digite a capacidade">
+                    <input 
+                        id="capacityVehicle"
+                        type="text"
+                        name="capacityVehicle" 
+                        v-model="vehicle.capacityVehicle"
+                        v-on:change="onlyNumber"
+                        placeholder="Digite a capacidade">
                 </div>
             </div>
 
@@ -77,11 +83,10 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import { createConductor } from '../services/ConductorService';
+import { builderConductorFromService } from '../model/conductorModel';
 
 export default {
-    
     name: 'ConductorForm',
     data: function() {
         const vehicle = {
@@ -117,6 +122,11 @@ export default {
                 return alert('Falta dados do veiculo')
             }
 
+            if (this.vehicle.capacityVehicle > 40) {
+                this.vehicle.capacityVehicle = ''
+                return alert('Capacidade máxima é 40')
+            }
+
             if (!this.validatePassword(this.profileConductor.password)) {
                 return alert('Senha formato incorreto')
             }
@@ -125,27 +135,50 @@ export default {
                 return alert('Senha formato incorreto')
             }
 
-            const conductor = { ...this.vehicle, ...this.profileConductor };
+            const conductor = builderConductorFromService (this.profileConductor, this.vehicle)
+            
+            await createConductor(conductor)
+                .then(response => {
+                    return alert('Cadastro realizado com sucesso!')
+                })
+                .catch(err => {
+                    console.log('err', err)
 
-            await axios.post('http://localhost:8081/conductor', conductor)
+                    return alert('Cadastro realizado com sucesso!')
+                })
 
-            return alert('Cadastro realizado com sucesso!')
         },
         cancel() {
-            // console.log('cancel form')
+            this.vehicle = {
+                modelVehicle: '',
+                boardVehicle: '',
+                colorVehicle: '',
+                capacityVehicle: '',
+            };
+
+            this.profileConductor = {
+                name: '',
+                cpf: '',
+                cnh: '',
+                email: '',
+                phone: '',
+                password: '',
+                secondPassword: '',
+            };
         },
         checkFieldsVehicle (vehicle) {
             for (const field in vehicle) {
                 if (!vehicle[field]) {
                     return false;
                 }
-            }
+            }    
 
             return true;
         },
         checkFieldsProfileConductor(conductor) {
             for (const field in conductor) {
                 if (!conductor[field]) {
+                    console.log('field', field)
                     return false;
                 }
             }
@@ -163,10 +196,17 @@ export default {
             const regexValidate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
 
             if (regexValidate.test(password)) {
-                return truel
+                return true;
             }
 
             return false;
+        },
+        onlyNumber(event) {
+            if (event.target.value) {
+                this.vehicle.capacityVehicle = event.target.value.replace(/\D/g, '');
+            } else {
+                this.vehicle.capacityVehicle = '';
+            }
         }
     }
 }

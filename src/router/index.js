@@ -6,6 +6,7 @@ import Schools from '../views/Schools.vue'
 import Itinerary from '../views/Itinerary.vue'
 import Conductor from '../views/Conductor.vue'
 import Responsible from '../views/Responsible.vue'
+import Login from '../views/Login.vue'
 
 const routes = [
   {
@@ -19,10 +20,11 @@ const routes = [
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
   { path: '/responsible', component: Responsible},
+  { path: '/login', component: Login},
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 
