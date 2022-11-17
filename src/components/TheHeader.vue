@@ -1,27 +1,35 @@
 <template>
-    <header class="header">
+    <nav class="header">
         <div class="routerItens">
-            <router-link to="/dashboard" class="routerItem">
+            <router-link to="/dashboard" class="itemNav">
                 Dashboard
             </router-link>
 
-            <router-link to="/conductor" class="routerItem">
+            <router-link to="/conductor" class="itemNav">
                 Condutor
             </router-link>
 
-            <router-link to="/passengers" class="routerItem">
+            <router-link to="/passengers" class="itemNav">
                 Passageiros
             </router-link>
 
-            <router-link to="/itinerary" class="routerItem">
+            <router-link to="/itinerary" class="itemNav">
                 Itinerário
             </router-link>
 
-            <router-link to="/schools" class="routerItem">
+            <router-link to="/schools" class="itemNav">
                 Escolas
             </router-link>
+
+            <router-link to="/responsible" class="itemNav">
+                Responsável
+            </router-link>
         </div>
-    </header>
+        <div class="buttonsAcess">
+            <router-link to="/conductor" tag="button" class="btn btn-light">Entrar</router-link>
+            <router-link to="/conductor" tag="button" class="btn btn-warning m-2">Registre-se</router-link>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -33,26 +41,51 @@ export default {
 <style>
     .header {
         background: #000;
-        color: #fff;
         height: 100px;
-        text-align: center;
-        align-content: center;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .itemNav {
+        border-bottom: 4px solid #FCBA03;
+        padding: 5px 10px;
+        margin: 10px 20px;
+    }
+
+    .buttonsAcess {
+        align-self: center;
     }
 
     .routerItens {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        padding-top: 40px;
+        outline: none !important;
+        gap: 0.625% !important;
+        align-self: center;
     }
 
-    .routerItem {
-        background-color: yellow;
-        border-radius: 20px;
-        width: 120px;
-        align-content: center;
-        padding-top: 5px;
-        height: 30px;
+    a {
+        text-decoration: none;
+        outline: none;
+        color: black;
+        text-decoration-line: blink !important;
+        font-size: 20px;
+        
     }
 
+    a:link,
+    a:visited,
+    a:focus {
+        background: transparent;
+        color: #FFF;
+        outline: none !important;
+    }
+
+    a:hover {
+        color: white !important;
+        background: #FCBA03;
+    }
+
+    a:active {
+        background: rgb(108, 109, 66);  
+        color: white !important;
+    }
 </style>

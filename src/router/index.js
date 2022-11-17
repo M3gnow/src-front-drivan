@@ -5,6 +5,7 @@ import Passengers from '../views/Passengers.vue'
 import Schools from '../views/Schools.vue'
 import Itinerary from '../views/Itinerary.vue'
 import Conductor from '../views/Conductor.vue'
+import Responsible from '../views/Responsible.vue'
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
   { path: '/schools', component: Schools },
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
+  { path: '/responsible', component: Responsible},
 ]
 
 const router = createRouter({
