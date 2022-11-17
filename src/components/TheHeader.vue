@@ -26,7 +26,7 @@
             </router-link>
         </div>
         <div class="buttonsAcess">
-            <router-link to="/conductor" tag="button" class="btn btn-light">Entrar</router-link>
+            <router-link to="/login" tag="button" class="btn btn-light">Entrar</router-link>
             <router-link to="/conductor" tag="button" class="btn btn-warning m-2">Registre-se</router-link>
         </div>
     </nav>
@@ -68,7 +68,6 @@ export default {
         color: black;
         text-decoration-line: blink !important;
         font-size: 20px;
-        
     }
 
     a:link,

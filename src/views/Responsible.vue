@@ -1,18 +1,28 @@
 <template>
+    <TheHeader />
+  
     <div class="container styleCardTitle mt-3">
         <h1>Cadastro Responsável </h1>
     </div>
 
     <ResponsibleForm />
+
+    <div class="mt-5">
+        <Footer />
+    </div>
 </template>
 
 <script>
 import ResponsibleForm from '../components/ResponsibleForm.vue'
+import TheHeader from '../components/TheHeader.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
     name: 'Responsible View',
     components: {
         ResponsibleForm,
+        TheHeader,
+        Footer
     },
     data: function() {
         return  {}
