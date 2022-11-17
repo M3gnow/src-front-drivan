@@ -1,12 +1,9 @@
 <template>
-
-    <div class="main-container">
-        <div class="styleCardTitle">
-            <h1>Cadastro Drivan</h1>
-        </div>
-
-        <ConductorForm />
+    <div class="container styleCardTitle mt-3">
+        <h1>Cadastro Drivan</h1>
     </div>
+
+    <ConductorForm />
 </template>
 
 <script>
@@ -25,11 +22,13 @@ export default {
 
 <style>
     .styleCardTitle {
-        height: 50px;
+        height: 80px !important;
         background-color: #FCBA03;
-        border-radius: 10px;
         text-align: center;
-        max-width: 500px;
-        margin: 0px auto;
+        border-radius: inherit !important;
+        align-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
 </style>

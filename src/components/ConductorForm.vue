@@ -1,67 +1,71 @@
 <template>
     <div class="container mt-3">
-        <div id="conductor-form">
+        <div>
             <div>
                 <h2>Dados Pessoais</h2>
             </div>
 
-            <div class="input-container">
-                <label for="name">Nome do condutor</label>
-                <input type="text" id="name" name="name" v-model="profileConductor.name" placeholder="Digite seu nome">
+            <div class="layoutFormnDefault">
+                <div class="input-container">
+                    <label for="name">Nome do condutor</label>
+                    <input type="text" id="name" name="name" v-model="profileConductor.name" placeholder="Digite seu nome">
+                </div>
+
+                <div class="input-container">
+                    <label for="cpf">CPF do condutor</label>
+                    <input type="text" id="cpf" name="cpf" v-model="profileConductor.cpf" placeholder="Digite seu CPF">
+                </div>
+
+                <div class="input-container">
+                    <label for="cpf">CNH do condutor</label>
+                    <input type="text" id="cnh" name="cnh" v-model="profileConductor.cnh" placeholder="Digite sua CNH">
+                </div>
+
+                <div class="input-container">
+                    <label for="email">E-mail do condutor</label>
+                    <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
+                </div>
+
+                <div class="input-container">
+                    <label for="phone">Celular do condutor</label>
+                    <input type="text" id="phone" name="phone" v-model="profileConductor.phone" placeholder="(XX)XXXXX-XXXX">
+                </div>
+
+                <div class="input-container">
+                    <label for="password">Senha de acesso Drivan</label>
+                    <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
+                </div>
+
+                <div class="input-container">
+                    <label for="secondPassword">Confirme sua senha</label>
+                    <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
+                </div>
             </div>
 
-            <div class="input-container">
-                <label for="name">CPF do condutor</label>
-                <input type="text" id="cpf" name="cpf" v-model="profileConductor.cpf" placeholder="Digite seu CPF">
-            </div>
-
-            <div class="input-container">
-                <label for="name">CNH do condutor</label>
-                <input type="text" id="cnh" name="cnh" v-model="profileConductor.cnh" placeholder="Digite sua CNH">
-            </div>
-
-            <div class="input-container">
-                <label for="name">E-mail do condutor</label>
-                <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
-            </div>
-
-            <div class="input-container">
-                <label for="name">Celular do condutor</label>
-                <input type="text" id="phone" name="phone" v-model="profileConductor.phone" placeholder="(XX)XXXXX-XXXX">
-            </div>
-
-            <div class="input-container">
-                <label for="name">Senha de acesso Drivan</label>
-                <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
-            </div>
-
-            <div class="input-container">
-                <label for="name">Confirme sua senha</label>
-                <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
-            </div>
-
-            <div>
+            <div class="mt-3">
                 <h2>Informações do seu Veículo</h2>
             </div>
 
-            <div class="input-container">
-                <label for="name">Modelo do veículo</label>
-                <input type="text" id="modelVehicle" name="modelVehicle" v-model="vehicle.modelVehicle" placeholder="Digite o modelo">
-            </div>
+            <div class="layoutFormnDefault">
+                <div class="input-container">
+                    <label for="modelVehicle">Modelo do veículo</label>
+                    <input type="text" id="modelVehicle" name="modelVehicle" v-model="vehicle.modelVehicle" placeholder="Digite o modelo">
+                </div>
 
-            <div class="input-container">
-                <label for="name">Placa do veículo</label>
-                <input type="text" id="boardVehicle" name="boardVehicle" v-model="vehicle.boardVehicle" placeholder="Digite a placa">
-            </div>
+                <div class="input-container">
+                    <label for="boardVehicle">Placa do veículo</label>
+                    <input type="text" id="boardVehicle" name="boardVehicle" v-model="vehicle.boardVehicle" placeholder="Digite a placa">
+                </div>
 
-            <div class="input-container">
-                <label for="name">Cor do veículo</label>
-                <input type="text" id="colorVehicle" name="colorVehicle" v-model="vehicle.colorVehicle" placeholder="Digite a cor">
-            </div>
+                <div class="input-container">
+                    <label for="colorVehicle">Cor do veículo</label>
+                    <input type="text" id="colorVehicle" name="colorVehicle" v-model="vehicle.colorVehicle" placeholder="Digite a cor">
+                </div>
 
-            <div class="input-container">
-                <label for="name">Capacidade do veículo</label>
-                <input type="text" id="capacityVehicle" name="capacityVehicle" v-model="vehicle.capacityVehicle" placeholder="Digite a capacidade">
+                <div class="input-container">
+                    <label for="capacityVehicle">Capacidade do veículo</label>
+                    <input type="text" id="capacityVehicle" name="capacityVehicle" v-model="vehicle.capacityVehicle" placeholder="Digite a capacidade">
+                </div>
             </div>
 
             <div class="mt-3 d-flex justify-content-end">
@@ -164,19 +168,11 @@ export default {
 
             return false;
         }
-
-
     }
-
 }
 </script>
 
 <style>
-    #conductor-form { 
-        max-width: 500px;
-        margin: 0px auto;
-    }
-
     .input-container {
         display: flex;
         flex-direction: column;

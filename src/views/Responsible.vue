@@ -1,18 +1,18 @@
 <template>
     <div class="container styleCardTitle mt-3">
-        <h1>Cadastro Itinerário </h1>
+        <h1>Cadastro Responsável </h1>
     </div>
 
-    <ItineraryForm />
+    <ResponsibleForm />
 </template>
 
 <script>
-import ItineraryForm from '../components/ItineraryForm.vue'
+import ResponsibleForm from '../components/ResponsibleForm.vue'
 
 export default {
-    name: 'School View',
+    name: 'Responsible View',
     components: {
-        ItineraryForm,
+        ResponsibleForm,
     },
     data: function() {
         return  {}
@@ -27,6 +27,8 @@ export default {
         background-color: #FCBA03;
         text-align: center;
         border-radius: inherit !important;
+        align-content: center;
+        align-items: center;
         display: flex;
         justify-content: center;
     }

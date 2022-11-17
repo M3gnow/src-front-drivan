@@ -1,7 +1,11 @@
 <template>
   <TheHeader />
   <router-view/>
-  <Footer />
+
+  <div class="mt-5">
+    <Footer />
+  </div>
+  
 </template>
 
 <script>
@@ -31,7 +35,7 @@ export default {
   }
 
   .main-container {
-    margin: 50px;
+    margin: 30px;
     min-height: 250px;
   }
 
@@ -42,5 +46,12 @@ export default {
     color: #222;
   }
 
+  .layoutFormnDefault {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
+  label {
+    color: white !important;
+  }
 </style>

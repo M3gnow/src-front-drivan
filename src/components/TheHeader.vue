@@ -20,6 +20,10 @@
             <router-link to="/schools" class="itemNav">
                 Escolas
             </router-link>
+
+            <router-link to="/responsible" class="itemNav">
+                Responsável
+            </router-link>
         </div>
         <div class="buttonsAcess">
             <router-link to="/conductor" tag="button" class="btn btn-light">Entrar</router-link>
