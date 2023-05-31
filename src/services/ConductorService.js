@@ -1,25 +1,17 @@
-const axios = require('axios');
+import { axiosInstance, config } from './../config'
 
-const urlBaseConductor = 'http://localhost:7209/conductor';
+export const getAllConductor = () => {
+    const request = axiosInstance.get(config.env.microservice.API_BASE_DRIVAN)
+        .then((res) => Promise.resolve(res.data))
+        .catch((error) => Promise.reject(error))
 
-export async function getAllConductor() {
-    const response = await axios.get(urlBaseConductor);
-
-    return response.data;
+    return request;
 }
 
-export async function createConductor(conductor) {
-    try {
-        await axios.post(urlBaseConductor, conductor);
-    } catch (error) {
-        if (error.status && error.status === 500) {
-            console.log('ERROR 500', error.message)    
-        }
+export const createConductor = (conductor) => {
+    const request = axiosInstance.post(config.env.microservice.API_BASE_DRIVAN, conductor)
+        .then((res) => Promise.resolve(res.data))
+        .catch((error) => Promise.reject(error))
 
-        if (error.status && error.status === 400) {
-            console.log('ERROR 400', error.message)    
-        }
-
-        console.log('ERROR GENERIC', error.message)
-    }
+    return request;
 }
