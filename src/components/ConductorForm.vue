@@ -22,6 +22,13 @@
                 </div>
 
                 <div class="input-container">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="dtaNascimento" v-model="profileConductor.dtaNascimento">
+                    </div>
+                </div>
+
+                <div class="input-container">
                     <label for="email">E-mail do condutor</label>
                     <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
                 </div>
@@ -74,6 +81,62 @@
                 </div>
             </div>
 
+            <div>
+                <h2>Localização</h2>
+            </div>
+
+            <div class="layoutFormnDefault">
+                <div class="input-container">
+                    <label for="streetAddress">Rua</label>
+                    <input type="text" id="streetAddress" name="streetAddress" v-model="adressConductor.streetAddress" placeholder="Rua">
+                </div>
+
+                <div class="input-container">
+                    <label for="numberStreetAddress">Número</label>
+                    <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="adressConductor.numberStreetAddress" placeholder="Número">
+                </div>
+
+                <div class="input-container">
+                    <label for="cepAddress">CEP</label>
+                    <input type="text" id="cepAddress" name="cepAddress" v-model="adressConductor.cepAddress" placeholder="CEP">
+                </div>
+
+                <div class="input-container col-md-6">
+                    <label for="period">Selecione o Estado</label>
+                    <v-select 
+                        class="input-select"
+                        v-model="adressConductor.stateAddress" 
+                        :options="states" 
+                        @search="doSearchPeriod">
+                    </v-select>
+                </div>
+
+                <div class="input-container col-md-5">
+                    <label for="period">Selecione o UF</label>
+                    <v-select 
+                        class="input-select"
+                        v-model="adressConductor.ufAddress" 
+                        :options="ufsStates" 
+                        @search="doSearchPeriod">
+                    </v-select>
+                </div>
+
+                <div class="input-container">
+                    <label for="bairroAddress">Bairro</label>
+                    <input type="text" id="bairroAddress" name="bairroAddress" v-model="adressConductor.bairroAddress" placeholder="Bairro">
+                </div>
+
+                <div class="input-container">
+                    <label for="cityAddress">Cidade</label>
+                    <input type="text" id="cityAddress" name="cityAddress" v-model="adressConductor.cityAddress" placeholder="Cidade">
+                </div>
+
+                <div class="input-container">
+                    <label for="complementAddress">Complemento</label>
+                    <input type="text" id="complementAddress" name="complementAddress" v-model="adressConductor.complementAddress" placeholder="Complemento">
+                </div>
+            </div>
+
             <div class="mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn btn-light me-3" @click="cancel()">Cancelar</button>
                 <button type="submit" class="btn btn-warning" @click="sendCreate()">Enviar</button>
@@ -104,9 +167,81 @@ export default {
             phone: '',
             password: '',
             secondPassword: '',
+            dtaNascimento: ''
         };
 
-        return { vehicle, profileConductor }
+        const adressConductor = {
+            cepAddress: '',
+            streetAddress: '',
+            numberStreetAddress: '',
+            bairroAddress: '',
+            cityAddress: '',
+            stateAddress: '',
+            ufAddress: '',
+            complementAddress: ''
+        };
+
+        const states = [
+            'Acre',
+            'Alagoas',
+            'Amapá',
+            'Amazonas',
+            'Bahia',
+            'Ceará',
+            'Distrito Federal',
+            'Espírito Santo',
+            'Goiás',
+            'Maranhão',
+            'Mato Grosso',
+            'Mato Grosso do Sul',
+            'Minas Gerais',
+            'Pará',
+            'Paraíba',
+            'Paraná',
+            'Pernambuco',
+            'Piauí',
+            'Rio de Janeiro',
+            'Rio Grande do Norte',
+            'Rio Grande do Sul',
+            'Rondônia',
+            'Roraima',
+            'Santa Catarina',
+            'São Paulo',
+            'Sergipe',
+            'Tocantins'
+        ];
+
+        const ufsStates = [
+            'AC',
+            'AL',
+            'AP',
+            'AM',
+            'BA',
+            'CE',
+            'DF',
+            'ES',
+            'GO',
+            'MA',
+            'MT',
+            'MS',
+            'MG',
+            'PA',
+            'PB',
+            'PR',
+            'PE',
+            'PI',
+            'RJ',
+            'RN',
+            'RS',
+            'RO',
+            'RR',
+            'SC',
+            'SP',
+            'SE',
+            'TO'
+        ];
+
+        return { vehicle, profileConductor, adressConductor, states, ufsStates }
     },
     methods: {
         async sendCreate() {
@@ -135,8 +270,10 @@ export default {
                 return alert('Senha formato incorreto')
             }
 
-            const conductor = builderConductorFromService (this.profileConductor, this.vehicle)
+            const conductor = builderConductorFromService (this.profileConductor, this.vehicle, this.adressConductor)
             
+            console.log('conductor', conductor);
+
             await createConductor(conductor)
                 .then(response => {
                     return alert('Cadastro realizado com sucesso!')
@@ -207,7 +344,16 @@ export default {
             } else {
                 this.vehicle.capacityVehicle = '';
             }
-        }
+        },
+        doSearchResponsible(event) {
+            console.log(event)
+        },
+        doSearchSchool(event) {
+            console.log(event)
+        },
+        doSearchPeriod(event) {
+            console.log(event)
+        },
     }
 }
 </script>
