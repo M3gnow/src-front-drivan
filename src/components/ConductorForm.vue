@@ -276,12 +276,12 @@ export default {
 
             await createConductor(conductor)
                 .then(response => {
-                    return alert('Cadastro realizado com sucesso!')
+                    return alert('Cadastro condutor realizado com sucesso!')
                 })
                 .catch(err => {
                     console.log('err', err)
 
-                    return alert('Cadastro realizado com sucesso!')
+                    return alert('Cadastro condutor realizado sem sucesso!')
                 })
 
         },
@@ -301,6 +301,18 @@ export default {
                 phone: '',
                 password: '',
                 secondPassword: '',
+                dtaNascimento: ''
+            };
+
+            this.adressConductor = {
+                cepAddress: '',
+                streetAddress: '',
+                numberStreetAddress: '',
+                bairroAddress: '',
+                cityAddress: '',
+                stateAddress: '',
+                ufAddress: '',
+                complementAddress: ''
             };
         },
         checkFieldsVehicle (vehicle) {
@@ -315,7 +327,6 @@ export default {
         checkFieldsProfileConductor(conductor) {
             for (const field in conductor) {
                 if (!conductor[field]) {
-                    console.log('field', field)
                     return false;
                 }
             }
