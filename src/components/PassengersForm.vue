@@ -7,8 +7,8 @@
 
             <div class="layoutFormnDefault">
                 <div class="input-container col-md-6">
-                    <label for="nameSchool">Nome do(a) Passageiro(a)</label>
-                    <input class="width100" type="text" id="nameSchool" name="nameSchool" v-model="Passenger.nameSchool" placeholder="Digite o nome">
+                    <label for="namePassenger">Nome do(a) Passageiro(a)</label>
+                    <input class="width100" type="text" id="namePassenger" name="namePassenger" v-model="Passenger.namePassenger" placeholder="Digite o nome">
                 </div>
 
                 <div class="input-container col-md-6">
@@ -99,8 +99,8 @@
             </div>
 
             <div class="mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn btn-light me-3">Cancelar</button>
-                <button type="submit" class="btn btn-warning">Enviar</button>
+                <button type="submit" class="btn btn-light me-3" @click="cancel()">Cancelar</button>
+                <button type="submit" class="btn btn-warning" @click="sendCreate()">Enviar</button>
             </div>
         </div>
     </div>
@@ -108,6 +108,8 @@
 
 <script>
 import 'vue-select/dist/vue-select.css';
+import { createPassenger } from '../services/PassergerService';
+import { builderPassengerFromService } from '../model/passengerModel';
 
 export default {
     name: 'PassengersForm',
@@ -218,6 +220,62 @@ export default {
         },
         doSearchPeriod(event) {
             console.log(event)
+        },
+        cancel() {
+            this.Passenger = {
+                namePassenger: '',
+                selectedResponsiblePassengers: [],
+                selectedSchoolPassenger: [],
+                selectedPeriodPassenger: [],
+            };
+
+            this.Address = {
+                streetAddress: '',
+                numberStreetAddress: '',
+                cepAddress: '',
+                bairroAddress: '',
+                cityAddress: '',
+                stateAddress: '',
+                ufAddress: '',
+                complementAddress: ''
+            }
+        },
+        checkFields(object) {
+            console.log('object', object)
+            for (const field in object) {
+                console.log('field', JSON.stringify(field));
+
+
+                if (!object[field]) {
+                    console.log('field', field)
+                    return false;
+                }
+
+
+            }
+
+            return true;
+        },
+        async sendCreate() {
+            if (!this.checkFields(this.Passenger)) {
+                return alert('Falta dados do passageiro')
+            }
+
+            if (!this.checkFields(this.Address)) {
+                return alert('Falta dados de localização')
+            }
+
+            const passenger = builderPassengerFromService(this.Passenger, this.Address)
+
+            await createPassenger(passenger)
+                .then(response => {
+                    return alert('Cadastro passageiro realizado com sucesso!')
+                })
+                .catch(err => {
+                    console.log('err', err)
+
+                    return alert('Cadastro passageiro realizado sem sucesso!')
+                })
         },
     }
 }

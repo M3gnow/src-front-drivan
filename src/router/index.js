@@ -11,8 +11,8 @@ import Login from '../views/Login.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'home-with-dashboards',
+    component: Dashboard
   },
   { path: '/dashboard', component: Dashboard },
   { path: '/passengers', component: Passengers },
