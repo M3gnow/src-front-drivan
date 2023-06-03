@@ -16,10 +16,19 @@ export default {
     margin: 0;
     box-sizing: border-box;
   }
+  
+  html {
+    height: 100%;
+  }
 
   body {
     margin: 0;
     background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    padding-bottom: 10rem;
+    box-sizing: inherit;
   }
 
   .main-container {

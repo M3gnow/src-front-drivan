@@ -7,6 +7,8 @@ import Itinerary from '../views/Itinerary.vue'
 import Conductor from '../views/Conductor.vue'
 import Responsible from '../views/Responsible.vue'
 import Login from '../views/Login.vue'
+import ConductorProfile from '../views/ConductorProfile'
+import AddressView from '../views/AddressView'
 
 const routes = [
   {
@@ -21,6 +23,8 @@ const routes = [
   { path: '/conductor', component: Conductor },
   { path: '/responsible', component: Responsible},
   { path: '/login', component: Login},
+  { path: '/conductor/:conductor_id', component: ConductorProfile },
+  { path: '/address/:address_id', component: AddressView }
 ]
 
 const router = createRouter({

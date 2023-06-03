@@ -1,5 +1,5 @@
 <template>
-    <nav class="header">
+    <nav class="header" v-if="!params.conductor_id">
         <div class="routerItens">
             <router-link to="/dashboard" class="itemNav">
                 Dashboard
@@ -26,15 +26,49 @@
             </router-link>
         </div>
         <div class="buttonsAcess">
-            <router-link to="/login" tag="button" class="btn btn-light">Entrar</router-link>
-            <router-link to="/conductor" tag="button" class="btn btn-warning m-2">Registre-se</router-link>
+            <router-link to="/login" class="btn btn-light">Entrar</router-link>
+            <router-link to="/conductor" class="btn btn-warning m-2">Registre-se</router-link>
+        </div>
+    </nav>
+
+    <nav class="header" v-if="params.conductor_id">
+        <div class="routerItens">
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }`}" class="itemNav">
+                Meu perfil
+            </router-link>
+
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/passengers`}" class="itemNav">
+                Passageiros
+            </router-link>
+
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/itinerary`}" class="itemNav">
+                Itinerário
+            </router-link>
+
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/schools`}" class="itemNav">
+                Escolas
+            </router-link>
+
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/responsible`}" class="itemNav">
+                Responsaveis
+            </router-link>
         </div>
     </nav>
 </template>
 
 <script>
-export default {
+import { useRoute } from 'vue-router'
 
+export default {
+    data: () => {
+        const { params } = useRoute();
+
+        console.log('the Header', 'headervalor', params);
+        
+        return {
+            params
+        }
+    }
 }
 </script>
 
