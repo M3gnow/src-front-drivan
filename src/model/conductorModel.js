@@ -12,7 +12,7 @@ export function builderConductorFromService(profileConductor, vehicleConductor, 
         modelo: vehicleConductor.modelVehicle,
         placa: vehicleConductor.boardVehicle,
         cor: vehicleConductor.colorVehicle,
-        capacidade: vehicleConductor.capacityVehicle,
+        capacidade: parseInt(vehicleConductor.capacityVehicle),
     }
 
     const endereco = {

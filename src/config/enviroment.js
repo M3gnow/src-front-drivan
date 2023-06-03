@@ -4,7 +4,7 @@ export const config = (() => {
             flags: {
             },
             microservice: {
-                API_BASE_DRIVAN: 'http://localhost:7209/api'
+                API_BASE_DRIVAN: 'https://localhost:7209/api'
             }
         }
     }

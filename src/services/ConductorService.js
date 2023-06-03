@@ -9,7 +9,7 @@ export const getAllConductor = () => {
 }
 
 export const createConductor = (conductor) => {
-    const request = axiosInstance.post(`${config.env.microservice.API_BASE_DRIVAN}/Conductor`, conductor)
+    const request = axiosInstance.post(`${config.env.microservice.API_BASE_DRIVAN}/Condutor`, conductor)
         .then((res) => Promise.resolve(res.data))
         .catch((error) => Promise.reject(error))
 

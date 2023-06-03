@@ -244,7 +244,7 @@ export default {
         return { vehicle, profileConductor, adressConductor, states, ufsStates }
     },
     methods: {
-        async sendCreate() {
+        sendCreate() {
             if (!this.checkFieldsProfileConductor(this.profileConductor)) {
                 return alert('Falta dados do condutor')
             }
@@ -274,12 +274,11 @@ export default {
             
             console.log('conductor', conductor);
 
-            await createConductor(conductor)
+            createConductor(conductor)
                 .then(response => {
-                    return alert('Cadastro condutor realizado com sucesso!')
+                    this.$router.push('/');
                 })
                 .catch(err => {
-                    console.log('err', err)
 
                     return alert('Cadastro condutor realizado sem sucesso!')
                 })
