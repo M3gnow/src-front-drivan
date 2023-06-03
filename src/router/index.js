@@ -9,6 +9,8 @@ import Responsible from '../views/Responsible.vue'
 import Login from '../views/Login.vue'
 import ConductorProfile from '../views/ConductorProfile'
 import AddressView from '../views/AddressView'
+import ListPeriodView from '../views/ListPeriodView'
+import ListSchoolView from '../views/ListSchoolView'
 
 const routes = [
   {
@@ -24,7 +26,9 @@ const routes = [
   { path: '/responsible', component: Responsible},
   { path: '/login', component: Login},
   { path: '/conductor/:conductor_id', component: ConductorProfile },
-  { path: '/address/:address_id', component: AddressView }
+  { path: '/address/:address_id', component: AddressView },
+  { path: '/conductor/:conductor_id/periods', component: ListPeriodView },
+  { path: '/conductor/:conductor_id/schools', component: ListSchoolView }
 ]
 
 const router = createRouter({

@@ -61,7 +61,7 @@
   </div>
 
   <div class="container mt-2 d-flex justify-content-between">
-    <button type="submit" class="btn btn-warning" @click="goAddressById(endereco.id)">
+    <button type="submit" class="btn btn-success" @click="goAddressById(endereco.id)">
       <i class="bi bi-house-heart"></i>
       Ver Endereço
     </button>

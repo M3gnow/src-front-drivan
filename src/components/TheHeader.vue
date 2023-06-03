@@ -37,8 +37,8 @@
                 Meu perfil
             </router-link>
 
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/passengers`}" class="itemNav">
-                Passageiros
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/periods`}" class="itemNav">
+                Períodos
             </router-link>
 
             <router-link :to="{ path: `/conductor/${ params.conductor_id }/itinerary`}" class="itemNav">
