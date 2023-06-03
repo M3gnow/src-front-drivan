@@ -50,7 +50,7 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsible.id)">
+                                        <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsavel.id)">
                                             <i class="bi bi-person-heart iconButtonTable"/>
                                         </button>
                                     </td>
@@ -67,6 +67,13 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="row">
+                        <button class="btn btn-outline-danger m-1">
+                            <i class="bi bi-calendar2-check m-1" />
+                            Excluir Período
+                        </button>
                     </div>
                 </div>
             </div>

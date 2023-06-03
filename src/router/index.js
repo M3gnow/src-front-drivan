@@ -11,6 +11,9 @@ import ConductorProfile from '../views/ConductorProfile'
 import AddressView from '../views/AddressView'
 import ListPeriodView from '../views/ListPeriodView'
 import ListSchoolView from '../views/ListSchoolView'
+import PassengerView from '../views/PassengerView'
+import SchoolView from '../views/SchoolView'
+import ResponsibleView from '../views/ResponsibleView'
 
 const routes = [
   {
@@ -28,7 +31,10 @@ const routes = [
   { path: '/conductor/:conductor_id', component: ConductorProfile },
   { path: '/address/:address_id', component: AddressView },
   { path: '/conductor/:conductor_id/periods', component: ListPeriodView },
-  { path: '/conductor/:conductor_id/schools', component: ListSchoolView }
+  { path: '/conductor/:conductor_id/schools', component: ListSchoolView },
+  { path: '/passenger/:passenger_id', component: PassengerView },
+  { path: '/school/:school_id', component: SchoolView },
+  { path: '/responsible/:responsible_id', component: ResponsibleView },
 ]
 
 const router = createRouter({
