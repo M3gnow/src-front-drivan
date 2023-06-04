@@ -1,5 +1,5 @@
 <template>
-    <nav class="header" v-if="!params.conductor_id">
+    <nav class="header" v-if="!params.conductor_id && !params.address_id">
         <div class="routerItens">
             <router-link to="/dashboard" class="itemNav">
                 Dashboard
@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <nav class="header" v-if="params.conductor_id">
+    <nav class="header" v-if="params.conductor_id || params.address_id">
         <div class="routerItens">
             <router-link :to="{ path: `/conductor/${ params.conductor_id }`}" class="itemNav">
                 Meu perfil

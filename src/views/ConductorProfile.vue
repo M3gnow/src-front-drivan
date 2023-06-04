@@ -42,26 +42,21 @@
             <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
         </div>
 
-        <div class="input-container">
+        <!-- <div class="input-container">
             <label for="phone">Celular do condutor</label>
             <input type="text" id="phone" name="phone" v-model="profileConductor.phone" placeholder="(XX)XXXXX-XXXX">
-        </div>
+        </div> -->
 
         <div class="input-container">
             <label for="password">Senha de acesso Drivan</label>
             <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
-        </div>
-
-        <div class="input-container">
-            <label for="secondPassword">Confirme sua senha</label>
-            <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
         </div>
       </div>
     </div>
   </div>
 
   <div class="container mt-2 d-flex justify-content-between">
-    <button type="submit" class="btn btn-success" @click="goAddressById(endereco.id)">
+    <button type="submit" class="btn btn-success" @click="goAddressById(profileConductor.endereco.id)">
       <i class="bi bi-house-heart"></i>
       Ver Endereço
     </button>
@@ -81,40 +76,48 @@
 import { useRoute } from 'vue-router'
 import TheHeader from '../components/TheHeader.vue'
 import Footer from '../components/Footer.vue'
+import { getConductorById } from '../services/ConductorService'
+import { builderConductorById } from '../model/conductorModel';
 
 export default {
-  data : () => {
+  name: 'ConductorProfileView',
+  data : function () {
       const { params } = useRoute();
-      const profileConductor = {
+      let profileConductor = {
           name: '',
           cpf: '',
           cnh: '',
           email: '',
           phone: '',
           password: '',
-          secondPassword: '',
-          dtaNascimento: ''
+          dtaNascimento: '',
+          endereco: {
+            id: 1
+          }
       };
 
-      const endereco = {
-        id: 1
-      }
+      getConductorById(parseInt(params.conductor_id))
+        .then((response) => {
+          this.profileConductor = builderConductorById(response);
+        })
+        .catch((e) => {
+          console.log('error message ->', e)
+        })
 
       return {
           params,
-          profileConductor,
-          endereco
+          profileConductor
       }
+  },
+  methods: {
+    goAddressById(id) {
+      this.$router.push(`/address/${id}`);
+    },
   },
   components: {
       TheHeader,
       Footer
   },
-  methods: {
-    goAddressById(id) {
-      this.$router.push(`/address/${id}`);
-    }
-  }
 }
 </script>
 

@@ -18,24 +18,24 @@
         <div class="layoutFormnDefault">
             <div class="input-container">
                 <label for="streetAddress">Rua</label>
-                <input type="text" id="streetAddress" name="streetAddress" v-model="adress.streetAddress" placeholder="Rua">
+                <input type="text" id="streetAddress" name="streetAddress" v-model="address.streetAddress" placeholder="Rua">
             </div>
 
             <div class="input-container">
                 <label for="numberStreetAddress">Número</label>
-                <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="adress.numberStreetAddress" placeholder="Número">
+                <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="address.numberStreetAddress" placeholder="Número">
             </div>
 
             <div class="input-container">
                 <label for="cepAddress">CEP</label>
-                <input type="text" id="cepAddress" name="cepAddress" v-model="adress.cepAddress" placeholder="CEP">
+                <input type="text" id="cepAddress" name="cepAddress" v-model="address.cepAddress" placeholder="CEP">
             </div>
 
             <div class="input-container col-md-6">
                 <label for="period">Selecione o Estado</label>
                 <v-select 
                     class="input-select"
-                    v-model="adress.stateAddress" 
+                    v-model="address.stateAddress" 
                     :options="states" 
                     @search="doSearchPeriod">
                 </v-select>
@@ -45,7 +45,7 @@
                 <label for="period">Selecione o UF</label>
                 <v-select 
                     class="input-select"
-                    v-model="adress.ufAddress" 
+                    v-model="address.ufAddress" 
                     :options="ufsStates" 
                     @search="doSearchPeriod">
                 </v-select>
@@ -53,17 +53,17 @@
 
             <div class="input-container">
                 <label for="bairroAddress">Bairro</label>
-                <input type="text" id="bairroAddress" name="bairroAddress" v-model="adress.bairroAddress" placeholder="Bairro">
+                <input type="text" id="bairroAddress" name="bairroAddress" v-model="address.bairroAddress" placeholder="Bairro">
             </div>
 
             <div class="input-container">
                 <label for="cityAddress">Cidade</label>
-                <input type="text" id="cityAddress" name="cityAddress" v-model="adress.cityAddress" placeholder="Cidade">
+                <input type="text" id="cityAddress" name="cityAddress" v-model="address.cityAddress" placeholder="Cidade">
             </div>
 
             <div class="input-container">
                 <label for="complementAddress">Complemento</label>
-                <input type="text" id="complementAddress" name="complementAddress" v-model="adress.complementAddress" placeholder="Complemento">
+                <input type="text" id="complementAddress" name="complementAddress" v-model="address.complementAddress" placeholder="Complemento">
             </div>
         </div>
     </div>
@@ -84,11 +84,14 @@
 import { useRoute } from 'vue-router'
 import TheHeader from '../components/TheHeader.vue'
 import Footer from '../components/Footer.vue'
+import { getAddressById } from '../services/AddressService'
+import { builderAddressById } from '../model/addressModel';
 
 export default {
-    data : () => {
+    name: 'AddressView',
+    data : function () {
         const { params } = useRoute();
-        const adress = {
+        const address = {
             cepAddress: '',
             streetAddress: '',
             numberStreetAddress: '',
@@ -159,9 +162,17 @@ export default {
             'TO'
         ];
 
+        getAddressById(parseInt(params.address_id))
+            .then((response) => {
+            this.address = builderAddressById(response);
+            })
+            .catch((e) => {
+            console.log('error message ->', e)
+            })
+
       return {
           params,
-          adress,
+          address,
           states,
           ufsStates
 

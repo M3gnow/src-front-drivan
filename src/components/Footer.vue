@@ -1,6 +1,6 @@
 <template>
     <footer id="footer">
-        <p>Drivan &copy; 2022</p>
+        <p>Drivan &copy; 2023</p>
     </footer>
 </template>
 

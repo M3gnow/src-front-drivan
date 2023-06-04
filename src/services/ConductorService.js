@@ -1,7 +1,7 @@
 import { axiosInstance, config } from './../config'
 
-export const getAllConductor = () => {
-    const request = axiosInstance.get(config.env.microservice.API_BASE_DRIVAN)
+export const getConductorById = (id) => {
+    const request = axiosInstance.get(`${config.env.microservice.API_BASE_DRIVAN}/Condutor/${id}`)
         .then((res) => Promise.resolve(res.data))
         .catch((error) => Promise.reject(error))
 

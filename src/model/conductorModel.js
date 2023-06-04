@@ -39,3 +39,19 @@ export function builderConductorFromService(profileConductor, vehicleConductor, 
     };
 }
 
+export function builderConductorById(conductorResponseApi) {
+    const profileConductorData = {
+        name: conductorResponseApi.nome,
+        cpf: conductorResponseApi.cpf,
+        cnh: conductorResponseApi.cnh,
+        email: conductorResponseApi.usuario.email,
+        password: conductorResponseApi.usuario.senha,
+        dtaNascimento: new Date(conductorResponseApi.dtaNascimento).toISOString().slice(0,10),
+        endereco: {
+            id: conductorResponseApi.endereco.id
+        }
+    };
+
+    return profileConductorData
+}
+
