@@ -72,7 +72,8 @@
                         multiple
                         class="input-select"
                         v-model="periods.labels" 
-                        :options="periods.labels" 
+                        :options="periods.labels"
+                        v-on:change="changeRoute"
                         @search="doSearchPeriod">
                     </v-select>
                 </div>
@@ -136,9 +137,14 @@
                 </div>
             </div>
 
-            <div class="mt-3 d-flex justify-content-end">
+            <!-- <div class="mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn btn-light me-3">Cancelar</button>
                 <button type="submit" class="btn btn-warning">Enviar</button>
+            </div> -->
+
+            <div class="mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-light me-3" @click="cancel()">Cancelar</button>
+                <button type="submit" class="btn btn-warning" @click="sendCreate()">Salvar</button>
             </div>
         </div>
     </div>
@@ -274,7 +280,7 @@ export default {
             this.periods.itens.push(dataPeriod);
             this.periods.labels.push(labelPeriod);
 
-            console.log(this.periods.labels);
+            // console.log(this.periods.labels);
         },
         checkFields(object) {
             for (const field in object) {
@@ -340,6 +346,49 @@ export default {
                 ouputHour: '',
                 ouputMin: '',
             }
+        },
+        cancel() {
+            this.School = {
+                nameSchool: '',
+                emailSchool: '',
+                phoneSchool: '',
+            };
+
+            this.Address = {
+                streetAddress: '',
+                numberStreetAddress: '',
+                cepAddress: '',
+                bairroAddress: '',
+                cityAddress: '',
+                stateAddress: [],
+                ufAddress: [],
+                complementAddress: ''
+            }
+
+            this.periods = {
+                itens: [],
+                labels: []
+            }
+
+            this.newPeriods = {
+                description: '',
+                inputHour: '',
+                inputMin: '',
+                ouputHour: '',
+                ouputMin: '',
+            }
+        },
+        sendCreate() {
+            if (!this.checkFields(this.Address)) {
+                return alert('Localização não foi preenchida')
+            }
+
+            if (!this.checkFields(this.School)) {
+                return alert('Localização não foi preenchida')
+            }
+        },
+        changeRoute() {
+            console.log(this.periods);
         }
     }
 }
