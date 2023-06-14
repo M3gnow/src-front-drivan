@@ -68,40 +68,24 @@
 import { useRoute } from 'vue-router'
 import TheHeader from '../components/TheHeader.vue'
 import Footer from '../components/Footer.vue'
+import { getAllSchoolByConductorId } from '../services/SchoolService'
+import { buildSchoolsByConductorIdFromService } from '../model/SchoolModel'
 
 export default {
+    name: 'ListSchoolView',
     data: () => {
         const { params } = useRoute();
-        const schools = [{
-            id: 1,
-            description: 'E. E. Homero Fernando Milano',
-            active: true,
-            endereco: {
-                id: 1
-            }
-        },
-        {
-            id: 2,
-            description: 'E. E. Roberto Frederico',
-            active: true,
-            endereco: {
-                id: 1
-            }
-        },
-        {
-            id: 3,
-            description: 'E. E. Etec Itaquaquecetuba',
-            active: false,
-            endereco: {
-                id: 1
-            }
-        }]
+        const dataSchool = {}
+        let schools = [];
 
-        return { params, schools }
+        return { params, schools, dataSchool }
     },
     components: {
         TheHeader,
         Footer
+    },
+    mounted() {
+        this.getData(this.params.conductor_id);
     },
     methods: {
         goToViewAddress(id) {
@@ -112,6 +96,16 @@ export default {
         },
         goToViewCreateSchool() {
             this.$router.push('/schools');
+        },
+        getData(conductorId) {
+            getAllSchoolByConductorId(conductorId)
+            .then((data) => {
+                this.schools = buildSchoolsByConductorIdFromService(data);
+            })
+            .catch((e) =>{
+                alert('Ocorreu uma falha na consulta das escolas');
+                console.log('Error consult schools', e.message);
+            })
         }
     }
 }

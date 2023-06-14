@@ -20,3 +20,18 @@ export function builderSchoolFromService(userId,school, adress, periods) {
         }]
     }
 }
+
+export function buildSchoolsByConductorIdFromService(schoolData) {
+    const schoolModel = schoolData.map((school) => {
+        return {
+            id: school.id,
+            description: school.descricao,
+            active: school.ativa,
+            endereco: {
+                id: school.endereco.id
+            }
+        }
+    })
+
+    return schoolModel;
+}
