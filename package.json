@@ -17,7 +17,8 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vue-select": "^4.0.0-beta.6"
+    "vue-select": "^4.0.0-beta.6",
+    "vue3-toastify": "^0.1.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

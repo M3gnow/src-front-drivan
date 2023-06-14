@@ -16,8 +16,9 @@ import SchoolView from '../views/SchoolView'
 import ResponsibleView from '../views/ResponsibleView'
 
 const routes = [
+  { path: '/', component: Login},
   {
-    path: '/',
+    path: '/home',
     name: 'home-with-dashboards',
     component: Dashboard
   },
@@ -27,7 +28,6 @@ const routes = [
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
   { path: '/responsible', component: Responsible},
-  { path: '/login', component: Login},
   { path: '/conductor/:conductor_id', component: ConductorProfile },
   { path: '/address/:address_id', component: AddressView },
   { path: '/conductor/:conductor_id/periods', component: ListPeriodView },

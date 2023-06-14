@@ -1,25 +1,28 @@
 <template>
-  <div class="container mt-3">
+    <div class="container mt-3">
         <div>
             <div>
                 <h2>Identificação e contato</h2>
             </div>
 
-            <div class="card p-3 cardColorBorder">                
+            <div class="card p-3 cardColorBorder">
                 <div class="d-flex layoutFormnDefault justify-content-between">
                     <div class="input-container">
                         <label for="nameSchool">Nome da escola</label>
-                        <input class="width350px" type="text" id="nameSchool" name="nameSchool" v-model="School.nameSchool" placeholder="Nome da escola">
+                        <input class="width350px" type="text" id="nameSchool" name="nameSchool" v-model="School.nameSchool"
+                            placeholder="Nome da escola">
                     </div>
 
                     <div class="input-container">
                         <label for="emailSchool">E-mail</label>
-                        <input class="width350px" type="text" id="emailSchool" name="emailSchool" v-model="School.emailSchool" placeholder="E-mail">
+                        <input class="width350px" type="text" id="emailSchool" name="emailSchool"
+                            v-model="School.emailSchool" placeholder="E-mail">
                     </div>
 
                     <div class="input-container">
                         <label for="phoneSchool">Telefone</label>
-                        <input class="width350px" type="text" id="phoneSchool" name="phoneSchool" v-model="School.phoneSchool" placeholder="Telefone">
+                        <input class="width350px" type="text" id="phoneSchool" name="phoneSchool"
+                            v-model="School.phoneSchool" placeholder="Telefone">
                     </div>
                 </div>
             </div>
@@ -40,22 +43,26 @@
                     <div class="input-container">
                         <label for="phoneSchool">Entrada</label>
                         <div class="d-flex">
-                            <input class="m-1 width200px" v-model="newPeriods.inputHour" placeholder="Hora de entrada" v-on:change="onlyNumberInputHour">
+                            <input class="m-1 width200px" v-model="newPeriods.inputHour" placeholder="Hora de entrada"
+                                v-on:change="onlyNumberInputHour">
                             <h5 class="m-2">:</h5>
-                            <input class="m-1 width200px" v-model="newPeriods.inputMin" placeholder="Min de entrada" v-on:change="onlyNumberInputMin">
+                            <input class="m-1 width200px" v-model="newPeriods.inputMin" placeholder="Min de entrada"
+                                v-on:change="onlyNumberInputMin">
                         </div>
-                        
+
                     </div>
 
                     <div class="input-container">
                         <label for="phoneSchool">Saída</label>
                         <div class="d-flex">
-                            <input class="m-1 width200px" v-model="newPeriods.ouputHour" placeholder="Hora de Saída" v-on:change="onlyNumberOutputHour">
+                            <input class="m-1 width200px" v-model="newPeriods.ouputHour" placeholder="Hora de Saída"
+                                v-on:change="onlyNumberOutputHour">
                             <h5 class="m-2">:</h5>
-                            <input class="m-1 width200px" v-model="newPeriods.ouputMin" placeholder="Min de entrada" v-on:change="onlyNumberOutputMin">
+                            <input class="m-1 width200px" v-model="newPeriods.ouputMin" placeholder="Min de entrada"
+                                v-on:change="onlyNumberOutputMin">
                         </div>
                     </div>
-                    
+
                     <div>
                         <button type="submit" class="btn btn-warning" @click="addNewPeriod(newPeriods)">
                             Adicionar
@@ -68,13 +75,8 @@
                 <div class="input-container col-md-12 mt-3">
                     <label for="period">Periodos selecionados</label>
 
-                    <v-select 
-                        multiple
-                        class="input-select"
-                        v-model="periods.labels" 
-                        :options="periods.labels"
-                        v-on:change="changeRoute"
-                        @search="doSearchPeriod">
+                    <v-select multiple class="input-select" v-model="periods.labels" :options="periods.labels"
+                        v-on:change="changeRoute" @search="doSearchPeriod">
                     </v-select>
                 </div>
             </div>
@@ -87,53 +89,53 @@
                 <div class="layoutFormnDefault mt-4">
                     <div class="input-container">
                         <label for="streetAddress">Rua</label>
-                        <input type="text" id="streetAddress" name="streetAddress" v-model="Address.streetAddress" placeholder="Rua">
+                        <input type="text" id="streetAddress" name="streetAddress" v-model="Address.streetAddress"
+                            placeholder="Rua">
                     </div>
 
                     <div class="input-container">
                         <label for="numberStreetAddress">Número</label>
-                        <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="Address.numberStreetAddress" placeholder="Número">
+                        <input type="text" id="numberStreetAddress" name="numberStreetAddress"
+                            v-model="Address.numberStreetAddress" placeholder="Número">
                     </div>
 
                     <div class="input-container">
                         <label for="cepAddress">CEP</label>
-                        <input class="width200px" type="text" id="cepAddress" name="cepAddress" v-model="Address.cepAddress" placeholder="CEP">
+                        <input class="width200px" type="text" id="cepAddress" name="cepAddress" v-model="Address.cepAddress"
+                            placeholder="CEP">
                     </div>
 
                     <div class="input-container col-md-6">
                         <label for="period">Selecione o Estado</label>
-                        <v-select 
-                            class="input-select"
-                            v-model="Address.stateAddress" 
-                            :options="states" 
+                        <v-select class="input-select" v-model="Address.stateAddress" :options="states"
                             @search="doSearchPeriod">
                         </v-select>
                     </div>
 
                     <div class="input-container col-md-5">
                         <label for="period">Selecione o UF</label>
-                        <v-select 
-                            class="input-select"
-                            v-model="Address.ufAddress" 
-                            :options="ufsStates" 
+                        <v-select class="input-select" v-model="Address.ufAddress" :options="ufsStates"
                             @search="doSearchPeriod">
                         </v-select>
                     </div>
 
                     <div class="input-container">
                         <label for="bairroAddress">Bairro</label>
-                        <input type="text" id="bairroAddress" name="bairroAddress" v-model="Address.bairroAddress" placeholder="Bairro">
+                        <input type="text" id="bairroAddress" name="bairroAddress" v-model="Address.bairroAddress"
+                            placeholder="Bairro">
                     </div>
 
                     <div class="input-container">
                         <label for="cityAddress">Cidade</label>
-                        <input type="text" id="cityAddress" name="cityAddress" v-model="Address.cityAddress" placeholder="Cidade">
+                        <input type="text" id="cityAddress" name="cityAddress" v-model="Address.cityAddress"
+                            placeholder="Cidade">
                     </div>
 
                     <div class="input-container">
                         <label for="complementAddress">Complemento</label>
-                        <input class="width200px" type="text" id="complementAddress" name="complementAddress" v-model="Address.complementAddress" placeholder="Complemento">
-                    </div>                
+                        <input class="width200px" type="text" id="complementAddress" name="complementAddress"
+                            v-model="Address.complementAddress" placeholder="Complemento">
+                    </div>
                 </div>
             </div>
 
@@ -151,10 +153,18 @@
 </template>
 
 <script>
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import { CreateEscola } from '../services/SchoolService'
+import { getUserStorage } from '../storage/UserStorage'
+import { builderSchoolFromService } from '../model/SchoolModel'
+
 export default {
     name: 'SchoolForm',
-    data: function() {
+    data: function () {
+        let user = {};
         const School = {
+
             nameSchool: '',
             emailSchool: '',
             phoneSchool: '',
@@ -247,7 +257,13 @@ export default {
 
         return { Address, School, periods, states, ufsStates, newPeriods }
     },
+    mounted(){
+        this.getUserLogged();
+    },
     methods: {
+        getUserLogged(){
+            this.user = getUserStorage();
+        },
         addNewPeriod(newPeriods) {
             let labelPeriod = '';
 
@@ -272,10 +288,10 @@ export default {
                 entrada: inputTimeExist ? `${newPeriods.inputHour}:${newPeriods.inputMin}` : null,
                 saida: outputTimeExist ? `${newPeriods.ouputHour}:${newPeriods.ouputMin}` : null,
             }
-            
+
             labelPeriod = dataPeriod.descricao;
-            labelPeriod = inputTimeExist ? `${labelPeriod} - (E) ${dataPeriod.entrada}`: labelPeriod;
-            labelPeriod = outputTimeExist ? `${labelPeriod} - (S) ${dataPeriod.saida}`: labelPeriod;
+            labelPeriod = inputTimeExist ? `${labelPeriod} - (E) ${dataPeriod.entrada}` : labelPeriod;
+            labelPeriod = outputTimeExist ? `${labelPeriod} - (S) ${dataPeriod.saida}` : labelPeriod;
 
             this.periods.itens.push(dataPeriod);
             this.periods.labels.push(labelPeriod);
@@ -384,8 +400,29 @@ export default {
             }
 
             if (!this.checkFields(this.School)) {
-                return alert('Localização não foi preenchida')
+                return alert('Os dados da escola não foram preenchidos')
             }
+            const data = builderSchoolFromService(this.user.id,this.School, this.Address, this.periods.itens);
+
+            const promise = CreateEscola(data);
+            promise.then(
+                (result) => {
+                    setTimeout(() => {
+                        this.$router.push(`/conductor/${this.user.id}/schools`);
+                    }, 1000)
+                }
+            )
+            toast.promise(
+                promise,
+                {
+                    pending: 'Processando o cadastro',
+                    success: 'cadastro realizado com sucesso 👌',
+                    error: 'Ocorreu um erro 🤯',
+                },
+                {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                },
+            );
         },
         changeRoute() {
             console.log(this.periods);
@@ -395,42 +432,42 @@ export default {
 </script>
 
 <style>
-    .input-container {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        border-left: 4px solid #FCBA03;
-        padding: 5px 10px;
-    }
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border-left: 4px solid #FCBA03;
+    padding: 5px 10px;
+}
 
-    label {
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        
-        color: #222;
-        
-    }
+label {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
 
-    input {
-        padding: 5px 10px;
-        width: 400px !important;
-    }
+    color: #222;
 
-    .width200px {
-        width: 200px !important;
-    }
+}
 
-    .width350px {
-        width: 350px !important;
-    }
+input {
+    padding: 5px 10px;
+    width: 400px !important;
+}
 
-    .descriptionPeriod {
-        width: 100% !important;
-    }
+.width200px {
+    width: 200px !important;
+}
 
-    .cardColorBorder {
-        background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
-        border-color: aquamarine !important;
-    }
+.width350px {
+    width: 350px !important;
+}
+
+.descriptionPeriod {
+    width: 100% !important;
+}
+
+.cardColorBorder {
+    background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
+    border-color: aquamarine !important;
+}
 </style>
