@@ -52,6 +52,8 @@
 export default {
     name: 'ItineraryForm',
     data: function() {
+        let user = {};
+
         const Itinerary = {
             descriptionItinerario: '',
             selectedSchoolItinerario: [],
@@ -71,8 +73,19 @@ export default {
             '18:00 - 22:00'
         ];
         
-        return { Itinerary, schools, periods }
+        return { user,Itinerary, schools, periods }
     },
+    mounted(){
+        this.getUserLogged();
+    },
+    methods:{
+        getUserLogged(){
+            this.user = getUserStorage();
+        },
+        getSchools(){
+            
+        }
+    }
 }
 </script>
 

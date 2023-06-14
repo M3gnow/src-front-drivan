@@ -11,6 +11,7 @@ import ConductorProfile from '../views/ConductorProfile'
 import AddressView from '../views/AddressView'
 import ListPeriodView from '../views/ListPeriodView'
 import ListSchoolView from '../views/ListSchoolView'
+import ListItineraryView from '../views/ListItineraryView'
 import PassengerView from '../views/PassengerView'
 import SchoolView from '../views/SchoolView'
 import ResponsibleView from '../views/ResponsibleView'
@@ -30,8 +31,9 @@ const routes = [
   { path: '/responsible', component: Responsible},
   { path: '/conductor/:conductor_id', component: ConductorProfile },
   { path: '/address/:address_id', component: AddressView },
-  { path: '/conductor/:conductor_id/periods', component: ListPeriodView },
+  { path: '/school/:school_id/periods', component: ListPeriodView },
   { path: '/conductor/:conductor_id/schools', component: ListSchoolView },
+  { path: '/conductor/:conductor_id/itineraries', component: ListItineraryView },
   { path: '/passenger/:passenger_id', component: PassengerView },
   { path: '/school/:school_id', component: SchoolView },
   { path: '/responsible/:responsible_id', component: ResponsibleView },
