@@ -101,149 +101,13 @@
 import { useRoute } from 'vue-router'
 import TheHeader from '../components/TheHeader.vue'
 import Footer from '../components/Footer.vue'
-
+import { getSchoolById } from '../services/SchoolService'
+import { builderAllPeriodsById } from '../model/PeriodsModel'
 export default {
     data: () => {
         const { params } = useRoute();
         
-        const periods = [{
-            id: 1,
-            description: '12:00 - 18:00',
-            passengers: [
-                {
-                    id: 1,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Thiago Henrique de Araujo'
-                },
-                {
-                    id: 2,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Fernando Henrique de Araujo'
-                },
-                {
-                    id: 3,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Abel Henrique de Araujo'
-                },
-                {
-                    id: 4,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Caique Henrique de Araujo'
-                }
-            ]
-        },
-        {
-            id: 2,
-            description: '07:00 - 12:00',
-            passengers: [
-                {
-                    id: 5,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Jorge Henrique de Araujo'
-                },
-                {
-                    id: 6,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Eder Henrique de Araujo'
-                },
-                {
-                    id: 8,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Robson Henrique de Araujo'
-                },
-                {
-                    id: 9,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Rafael Henrique de Araujo'
-                }
-            ]
-        },
-        {
-            id: 3,
-            description: '08:00 - 13:00',
-            passengers: [
-                {
-                    id: 11,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Felipe Henrique de Araujo'
-                },
-                {
-                    id: 21,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Gabriel Henrique de Araujo'
-                },
-                {
-                    id: 31,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Nicholas Henrique de Araujo'
-                },
-                {
-                    id: 41,
-                    responsavel: {
-                        id:1
-                    },
-                    endereco: {
-                        id: 1
-                    },
-                    name: 'Lucas Henrique de Araujo'
-                }
-            ]
-        }];
+        let periods = [];
 
         return { params, periods }
     },
@@ -251,7 +115,16 @@ export default {
         TheHeader,
         Footer
     },
+    mounted(){
+        this.getPeriods();
+    },
     methods: {
+        getPeriods(){
+            getSchoolById(this.params.school_id).then((result)=>{
+                this.periods = builderAllPeriodsById(result);           
+            })
+            
+        },
         goToViewAddress(id) {
             this.$router.push(`/address/${id}`);
         },

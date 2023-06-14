@@ -30,7 +30,7 @@ const routes = [
   { path: '/responsible', component: Responsible},
   { path: '/conductor/:conductor_id', component: ConductorProfile },
   { path: '/address/:address_id', component: AddressView },
-  { path: '/conductor/:conductor_id/periods', component: ListPeriodView },
+  { path: '/school/:school_id/periods', component: ListPeriodView },
   { path: '/conductor/:conductor_id/schools', component: ListSchoolView },
   { path: '/passenger/:passenger_id', component: PassengerView },
   { path: '/school/:school_id', component: SchoolView },
