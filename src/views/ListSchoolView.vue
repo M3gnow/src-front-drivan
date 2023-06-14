@@ -99,13 +99,13 @@ export default {
         },
         getData(conductorId) {
             getAllSchoolByConductorId(conductorId)
-            .then((data) => {
-                this.schools = buildSchoolsByConductorIdFromService(data);
-            })
-            .catch((e) =>{
-                alert('Ocorreu uma falha na consulta das escolas');
-                console.log('Error consult schools', e.message);
-            })
+                .then((data) => {
+                    this.schools = buildSchoolsByConductorIdFromService(data);
+                })
+                .catch((e) =>{
+                    alert('Ocorreu uma falha na consulta das escolas');
+                    console.log('Error consult schools', e.message);
+                })
         }
     }
 }
