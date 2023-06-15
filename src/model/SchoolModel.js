@@ -52,3 +52,16 @@ export function buildSchoolsByConductorIdToItinierary(schoolData) {
 
     return schoolModel;
 }
+
+export function buildSchoolsByIdFromService(schoolByIdData) {
+    return {
+        id: schoolByIdData.id,
+        nameSchool: schoolByIdData.descricao,
+        emailSchool: schoolByIdData.email || '',
+        phoneSchool: schoolByIdData.telefone || '',
+        periods: schoolByIdData.periodos,
+        endereco: {
+            id: schoolByIdData.endereco.id
+        }
+    }
+}
