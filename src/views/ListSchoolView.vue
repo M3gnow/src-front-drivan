@@ -1,7 +1,7 @@
 <template>
     <TheHeader/>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="mt-2">
             <div class="d-flex">
                 <h1 class="m-2">
@@ -10,6 +10,26 @@
                 <h1 class="m-2">
                     Escolas
                 </h1>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="d-flex justify-content-between mt-3">
+            <div class="d-flex">
+                <h1 class="m-2">
+                    <i class="bi bi-mortarboard" />
+                </h1>
+                <h1 class="m-2">
+                    Escolas
+                </h1>
+            </div>
+
+            <div class="d-flex">
+                <button class="btn btn-outline-warning m-1" @click="goToViewCreateSchool()">
+                    <i class="bi bi-plus-lg"></i>
+                    Adicionar
+                </button>
             </div>
         </div>
     </div>
@@ -49,14 +69,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
-    <div class="mt-5 container">
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-warning m-1" @click="goToViewCreateSchool()">
-                Adicionar Escola
-            </button>
-        </div>
     </div>
     
     <div class="mt-5">

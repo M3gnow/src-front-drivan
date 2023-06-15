@@ -2,7 +2,7 @@
     <TheHeader />
 
     <div class="container">
-        <div class="mt-2">
+        <div class="d-flex justify-content-between mt-3">
             <div class="d-flex">
                 <h1 class="m-2">
                     <i class="bi bi-calendar2-check" />
@@ -10,16 +10,17 @@
                 <h1 class="m-2">
                     Itinerários
                 </h1>
+            </div>
 
+            <div class="d-flex">
+                <button class="btn btn-outline-warning m-1">
+                    <i class="bi bi-plus-lg"></i>
+                    Adicionar
+                </button>
             </div>
         </div>
     </div>
-    <div class="row">
-        <button class="btn btn-outline-warning m-1">
-            <i class="bi bi-calendar-plus m-1" />
-            Incluir novo itinerário
-        </button>
-    </div>
+
     <div class="mt-3 container">
         <div class="accordion mt-2" v-bind:key="itinerary.id" v-for="itinerary of itineraries">
             <div class="accordion-item">

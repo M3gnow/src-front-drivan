@@ -30,7 +30,6 @@
       <label for="newDrivan">
         Novo no Drivan?
         <a id="createAccount" href="/conductor">Crie sua conta agora!</a>
-        <!-- <router-link class="colorDark" to="/conductor"> Crie sua conta agora!</router-link> -->
       </label>
     </div>
   </div>
@@ -39,7 +38,7 @@
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
 import { PostLogin } from '../services/UserSevice'
-import {setUserStorage,getUserStorage} from '../storage/UserStorage'
+import { setUserStorage, getUserStorage } from '../storage/UserStorage'
 import { builderUser } from '../model/UserModel'
 export default {
   data: function () {
@@ -63,14 +62,16 @@ export default {
       //   return alert('Senha formato incorreto')
       //}
       const promiseLogin = PostLogin(this.LoginModel)
-      promiseLogin.then((result) => {
-        const user = builderUser(result);
-        setUserStorage(user);
-        setTimeout(() => {
-          this.$router.push('/home');
-        }, 1000)
-      }
-      )
+        .then((result) => {
+          const user = builderUser(result);
+          setUserStorage(user);
+
+          console.log('user', user);
+
+          ;
+          setTimeout(() => this.$router.push(`/conductor/${user.id}`), 1000);
+        });
+
       toast.promise(
         promiseLogin,
         {
@@ -101,12 +102,10 @@ export default {
       return false;
     },
     verifyIsLogged(){
-      console.log('verifica')
-      const user = getUserStorage()
-      console.log('user',user)
-      if(user !== undefined && user !== null){
-        console.log('logado')
-        this.$router.push('/home');
+      const user = getUserStorage();
+
+      if (user && user.id) {
+        this.$router.push(`/conductor/${user.id}`);
       }
     }
   }

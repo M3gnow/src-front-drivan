@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Dashboard from '../views/Dashboard.vue'
 import Passengers from '../views/Passengers.vue'
 import Schools from '../views/Schools.vue'
 import Itinerary from '../views/Itinerary.vue'
@@ -17,25 +15,32 @@ import SchoolView from '../views/SchoolView'
 import ResponsibleView from '../views/ResponsibleView'
 
 const routes = [
+  /* Login */
   { path: '/', component: Login},
-  {
-    path: '/home',
-    name: 'home-with-dashboards',
-    component: Dashboard
-  },
-  { path: '/dashboard', component: Dashboard },
+  
+  /* Registers */
   { path: '/passengers', component: Passengers },
   { path: '/schools', component: Schools },
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
   { path: '/responsible', component: Responsible},
+  
+  /* View Conductor */
   { path: '/conductor/:conductor_id', component: ConductorProfile },
-  { path: '/address/:address_id', component: AddressView },
-  { path: '/school/:school_id/periods', component: ListPeriodView },
   { path: '/conductor/:conductor_id/schools', component: ListSchoolView },
   { path: '/conductor/:conductor_id/itineraries', component: ListItineraryView },
-  { path: '/passenger/:passenger_id', component: PassengerView },
+
+  /* View Address */
+  { path: '/address/:address_id', component: AddressView },
+
+  /* View School */
+  { path: '/school/:school_id/periods', component: ListPeriodView },
   { path: '/school/:school_id', component: SchoolView },
+  
+  /* View Passenger */
+  { path: '/passenger/:passenger_id', component: PassengerView },
+
+  /* View Responsible */
   { path: '/responsible/:responsible_id', component: ResponsibleView },
 ]
 

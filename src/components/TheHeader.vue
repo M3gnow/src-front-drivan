@@ -1,72 +1,49 @@
 <template>
-    <nav class="header" v-if="!params.conductor_id && !params.address_id">
-        <div class="routerItens">
-            <router-link to="/dashboard" class="itemNav">
-                Dashboard
-            </router-link>
-
-            <router-link to="/conductor" class="itemNav">
-                Condutor
-            </router-link>
-
-            <router-link to="/passengers" class="itemNav">
-                Passageiros
-            </router-link>
-
-            <router-link to="/itinerary" class="itemNav">
-                Itinerário
-            </router-link>
-
-            <router-link to="/schools" class="itemNav">
-                Escolas
-            </router-link>
-
-            <router-link to="/responsible" class="itemNav">
-                Responsável
-            </router-link>
-        </div>
-        <div class="buttonsAcess">
-            <router-link to="/login" class="btn btn-light">Entrar</router-link>
-            <router-link to="/conductor" class="btn btn-warning m-2">Registre-se</router-link>
-        </div>
-    </nav>
-
-    <nav class="header" v-if="params.conductor_id || params.address_id">
-        <div class="routerItens">
+    <nav class="header d-flex justify-content-between p-5">
+        <div class="routerItens" v-if="this.user">
             <router-link :to="{ path: `/conductor/${ params.conductor_id }`}" class="itemNav">
                 Meu perfil
             </router-link>
-
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/periods`}" class="itemNav">
-                Períodos
-            </router-link>
-
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/itinerary`}" class="itemNav">
+            
+            <router-link :to="{ path: `/conductor/${ params.conductor_id }/itineraries`}" class="itemNav">
                 Itinerário
             </router-link>
 
             <router-link :to="{ path: `/conductor/${ params.conductor_id }/schools`}" class="itemNav">
                 Escolas
             </router-link>
+        </div>
 
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/responsible`}" class="itemNav">
-                Responsaveis
-            </router-link>
+        <div class="buttonsAcess" v-if="this.user">
+            <button type="button" class="btn btn-outline-warning" @click="logoutLogin()">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
         </div>
     </nav>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
+import { getUserStorage, deleteUserStorage } from '../storage/UserStorage'
 
 export default {
     data: () => {
         const { params } = useRoute();
+        const user = {};
 
-        console.log('the Header', 'headervalor', params);
-        
         return {
-            params
+            params,
+            user
+        }
+    },
+    mounted() {
+        this.user = getUserStorage();
+    },
+    methods: {
+        logoutLogin() {
+            deleteUserStorage();
+
+            setTimeout(() => this.$router.push('/'), 1000)
         }
     }
 }
@@ -81,9 +58,9 @@ export default {
     }
 
     .itemNav {
-        border-bottom: 4px solid #FCBA03;
         padding: 5px 10px;
         margin: 10px 20px;
+        border-left: 4px solid #FCBA03;
     }
 
     .buttonsAcess {
