@@ -1,15 +1,15 @@
 <template>
     <nav class="header d-flex justify-content-between p-5">
         <div class="routerItens" v-if="this.user">
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }`}" class="itemNav">
+            <router-link :to="{ path: `/conductor/${ user.id }`}" class="itemNav">
                 Meu perfil
             </router-link>
             
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/itineraries`}" class="itemNav">
+            <router-link :to="{ path: `/conductor/${ user.id }/itineraries`}" class="itemNav">
                 Itinerário
             </router-link>
 
-            <router-link :to="{ path: `/conductor/${ params.conductor_id }/schools`}" class="itemNav">
+            <router-link :to="{ path: `/conductor/${ user.id }/schools`}" class="itemNav">
                 Escolas
             </router-link>
         </div>

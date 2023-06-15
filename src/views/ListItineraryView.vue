@@ -13,7 +13,7 @@
             </div>
 
             <div class="d-flex">
-                <button class="btn btn-outline-warning m-1">
+                <button class="btn btn-outline-warning m-1" @click="goCreateItinerary()">
                     <i class="bi bi-plus-lg"></i>
                     Adicionar
                 </button>
@@ -34,23 +34,23 @@
                 <div id="collapseOne" class="accordion-collapse collapse m-4" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <table class="table table-hover mt-3">
+                        <table class="table table-hover mt-3 table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Escola</th>
-                                    <th scope="col">periodo</th>
-                                    <th scope="col">horário</th>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Ações</th>
+                                    <th class="text-center" scope="col">Período</th>
+                                    <th class="text-center" scope="col">Horário</th>
+                                    <th class="text-center" scope="col">Tipo</th>
+                                    <th class="text-center" scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="movement of itinerary.movements" v-bind:key="movement.id">
                                     <th scope="row">{{ movement.school.description }}</th>
-                                    <td class="">{{ movement.period.description }}</td>
-                                    <td class="">{{ movement.hour }}</td>
-                                    <td class="">{{ movement.type }}</td>
-                                    <td>
+                                    <td class="text-center">{{ movement.period.description }}</td>
+                                    <td class="text-center">{{ movement.hour }}</td>
+                                    <td class="text-center">{{ movement.type }}</td>
+                                    <td class="text-center">
                                         <button class="btn btn-outline-danger m-1">
                                             Remover
                                         </button>
@@ -60,15 +60,20 @@
                         </table>
                     </div>
 
-                    <div class="row">
-                        <button class="btn btn-warning m-1">
-                            <i class="bi bi-sign-turn-slight-right m-1" />
-                            Gerar rota
-                        </button>
-                        <button class="btn btn-outline-danger m-1">
-                            <i class="bi bi-calendar-x m-1" />
-                            Excluir Itinerário
-                        </button>
+                    <div class="container d-flex justify-content-between">
+                        <div class="d-flex">
+                            <button class="btn btn-outline-danger m-1">
+                                <i class="bi bi-calendar-x m-1" />
+                                Excluir Itinerário
+                            </button>
+                        </div>
+
+                        <div class="d-flex">
+                            <button class="btn btn-warning m-1">
+                                <i class="bi bi-sign-turn-slight-right m-1" />
+                                Gerar rota
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,6 +112,9 @@ export default {
                     this.itineraries = builderAllItinerariesById(result);
                 }
             );
+        },
+        goCreateItinerary() {
+            this.$router.push('/itinerary');
         }
     }
 }

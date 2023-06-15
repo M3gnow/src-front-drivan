@@ -1,19 +1,5 @@
 <template>
     <TheHeader/>
-
-    <!-- <div class="container">
-        <div class="mt-2">
-            <div class="d-flex">
-                <h1 class="m-2">
-                    <i class="bi bi-mortarboard" />
-                </h1>
-                <h1 class="m-2">
-                    Escolas
-                </h1>
-            </div>
-        </div>
-    </div> -->
-
     <div class="container">
         <div class="d-flex justify-content-between mt-3">
             <div class="d-flex">
@@ -38,26 +24,23 @@
         <table class="table table-hover mt-3">
             <thead>
                 <tr>
-                <th scope="col">#</th>
                 <th scope="col">Escola</th>
-                <th scope="col">Status</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Ações</th>
+                <th class="text-center" scope="col">Status</th>
+                <th class="text-center" scope="col">Endereço</th>
+                <th class="text-center" scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="school of schools" v-bind:key="school.id">
-                    <th scope="row">{{ school.id }}</th>
-                    
-                    <td>{{ school.description }}</td>
-                    <td>{{ school.active ? 'Ativada': 'Desativada' }}</td>
-                    <td>
+                    <td class="text-right">{{ school.description }}</td>
+                    <td class="text-center">{{ school.active ? 'Ativada': 'Desativada' }}</td>
+                    <td class="text-center">
                         <button class="btn btn-outline-success m-1" @click="goToViewAddress(school.endereco.id)">
                             <i class="bi bi-house-heart iconButtonTable"/>
                         </button>
                     </td>
 
-                    <td>
+                    <td class="text-center">
                         <button class="btn btn-outline-warning m-1" @click="goToViewSchool(school.id)">
                             <i class="bi bi-mortarboard iconButtonTable"/>
                         </button>
