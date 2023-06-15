@@ -35,3 +35,20 @@ export function buildSchoolsByConductorIdFromService(schoolData) {
 
     return schoolModel;
 }
+
+export function buildSchoolsByConductorIdToItinierary(schoolData) {
+    const schoolModel = schoolData.map((school) => {
+        return {
+            id: school.id,
+            description: school.descricao,
+            periods: school.periodos.map((periodo)=>{
+                return {
+                    id: periodo.id,
+                    description: periodo.descricao
+                }
+            })
+        }
+    })
+
+    return schoolModel;
+}
