@@ -139,11 +139,6 @@
                 </div>
             </div>
 
-            <!-- <div class="mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn btn-light me-3">Cancelar</button>
-                <button type="submit" class="btn btn-warning">Enviar</button>
-            </div> -->
-
             <div class="mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn btn-light me-3" @click="cancel()">Cancelar</button>
                 <button type="submit" class="btn btn-warning" @click="sendCreate()">Salvar</button>
