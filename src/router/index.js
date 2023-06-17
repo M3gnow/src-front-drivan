@@ -13,6 +13,8 @@ import ListItineraryView from '../views/ListItineraryView'
 import PassengerView from '../views/PassengerView'
 import SchoolView from '../views/SchoolView'
 import ResponsibleView from '../views/ResponsibleView'
+import Period from '../views/Period.vue'
+import PeriodView from '../views/PeriodView'
 
 const routes = [
   /* Login */
@@ -24,6 +26,7 @@ const routes = [
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
   { path: '/responsible', component: Responsible},
+  { path: '/schools/:school_id/periods', component: Period },
   
   /* View Conductor */
   { path: '/conductor/:conductor_id', component: ConductorProfile },
@@ -42,6 +45,9 @@ const routes = [
 
   /* View Responsible */
   { path: '/responsible/:responsible_id', component: ResponsibleView },
+
+  /* View Period */
+  { path: '/schools/:school_id/periods/:periods_id', component: PeriodView },
 ]
 
 const router = createRouter({

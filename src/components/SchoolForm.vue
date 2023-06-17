@@ -75,8 +75,7 @@
                 <div class="input-container col-md-12 mt-3">
                     <label class="textWhite" for="period">Periodos selecionados</label>
 
-                    <v-select multiple class="input-select" v-model="periods.labels" :options="periods.labels"
-                        v-on:change="changeRoute" @search="doSearchPeriod">
+                    <v-select multiple class="input-select" v-model="periods.labels" :options="periods.labels" >
                     </v-select>
                 </div>
             </div>
@@ -107,15 +106,13 @@
 
                     <div class="input-container col-md-6">
                         <label class="textWhite" for="period">Selecione o Estado</label>
-                        <v-select class="input-select" v-model="Address.stateAddress" :options="states"
-                            @search="doSearchPeriod">
+                        <v-select class="input-select" v-model="Address.stateAddress" :options="states">
                         </v-select>
                     </div>
 
                     <div class="input-container col-md-5">
                         <label class="textWhite" for="period">Selecione o UF</label>
-                        <v-select class="input-select" v-model="Address.ufAddress" :options="ufsStates"
-                            @search="doSearchPeriod">
+                        <v-select class="input-select" v-model="Address.ufAddress" :options="ufsStates">
                         </v-select>
                     </div>
 
@@ -266,17 +263,36 @@ export default {
                 return alert('Descrição é obrigatório')
             }
 
-            const inputTimeExist = newPeriods.inputHour && newPeriods.inputMin;
-            const outputTimeExist = newPeriods.ouputHour && newPeriods.ouputMin;
+            let existFieldPeriod = false;
+            //entrada
+            const inputHourSizeCorrect = newPeriods.inputHour.length === 2;
+            const inputMinSizeCorrect = newPeriods.inputMin.length === 2;
+            const inputTimeExist = inputHourSizeCorrect && inputMinSizeCorrect;
+            
+            // saida
+            const outputHoursSizeCorrect = newPeriods.ouputHour.length === 2;
+            const outputMinSizeCorrect = newPeriods.ouputMin.length === 2;
+            const outputTimeExist = outputHoursSizeCorrect && outputMinSizeCorrect;
 
-            if (!inputTimeExist)
+            if (inputHourSizeCorrect || inputMinSizeCorrect) {
+                if (!inputTimeExist) {
                 return alert('Entrada parcialmente não preenchida')
+                }
 
-            if (!outputTimeExist)
+                existFieldPeriod = true;
+            }
+
+            if (newPeriods.ouputHour || newPeriods.ouputMin) {
+                if (!outputTimeExist) {
                 return alert('Saída parcialmente não preenchida')
+                }
 
-            if (!inputTimeExist && !outputTimeExist)
-                return alert('Entrada ou saída é obrigatório')
+                existFieldPeriod = true;
+            }
+
+            if (!existFieldPeriod) {
+                return alert('Entrada ou Saída precisa ser preenchida')
+            }
 
             const dataPeriod = {
                 descricao: newPeriods.description,
@@ -290,8 +306,6 @@ export default {
 
             this.periods.itens.push(dataPeriod);
             this.periods.labels.push(labelPeriod);
-
-            // console.log(this.periods.labels);
         },
         checkFields(object) {
             for (const field in object) {
@@ -345,9 +359,6 @@ export default {
             }
 
             this.newPeriods.ouputMin = this.newPeriods.ouputMin.slice(0, 2);
-        },
-        doSearchPeriod() {
-            console.log()
         },
         setEmptyNewPeriods() {
             this.newPeriods = {
@@ -419,9 +430,6 @@ export default {
                 },
             );
         },
-        changeRoute() {
-            console.log(this.periods);
-        }
     }
 }
 </script>

@@ -5,9 +5,9 @@
         <div class="mt-2">
             <div class="d-flex">
                 <h1 class="m-2">
-                    <i class="bi bi-calendar2-check" />
+                    <i class="bi bi-clock-history"></i>
                 </h1>
-                <h1 class="m-2">
+                <h1 class="m-2 textWhite">
                     Períodos
                 </h1>
             </div>
@@ -32,11 +32,11 @@
                 <table class="table table-hover mt-3 table-bordered">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Passageiro</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">Responsavel</th>
-                        <th scope="col">Ações</th>
+                        <th class="text-right" scope="col">#</th>
+                        <th class="text-right" scope="col">Passageiro</th>
+                        <th class="text-center" scope="col">Endereço</th>
+                        <th class="text-center" scope="col">Responsavel</th>
+                        <th class="text-center" scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,21 +46,22 @@
                             
                             <td class="">{{ passenger.name }}</td>
                             
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-success m-1" @click="goToViewAddress(passenger.endereco.id)">
                                     <i class="bi bi-house-heart iconButtonTable"/>
                                 </button>
                             </td>
 
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsavel.id)">
                                     <i class="bi bi-person-heart iconButtonTable"/>
                                 </button>
                             </td>
 
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-warning m-1" @click="goToViewPassenger(period.id, passenger.id)">
                                     <i class="bi bi-person-badge iconButtonTable"/>
+                                    Detalhe
                                 </button>
 
                                 <button class="btn btn-outline-danger m-1">
@@ -72,10 +73,15 @@
                 </table>
             </div>
 
-            <div class="container row mt-3">
+            <div class="container mt-3 d-flex justify-content-between">
                 <button class="btn btn-danger m-1">
-                    <i class="bi bi-calendar2-check m-1" />
+                    <i class="bi bi-clock-history"></i>
                     Excluir Período
+                </button>
+
+                <button class="btn btn-warning m-1" @click="goToViewDetailPeriod(period.id)">
+                    <i class="bi bi-clock-history"></i>
+                    Ver Período
                 </button>
             </div>
         </div>
@@ -83,7 +89,7 @@
 
     <div class="mt-3 container">
         <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-warning m-1" @click="goToViewCreatePassenger()">
+            <button class="btn btn-outline-warning m-1" @click="goToViewCreatePeriod()">
                 Adicionar Período
             </button>
         </div>
@@ -132,8 +138,13 @@ export default {
             this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers/${passengerId}`);
         },
         goToViewCreatePassenger(periodId) {
-
             this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers`);
+        },
+        goToViewCreatePeriod() {
+            this.$router.push(`/schools/${this.params.school_id}/periods`);
+        },
+        goToViewDetailPeriod(periodId) {
+            this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}`);
         }
     }
 }
@@ -146,7 +157,6 @@ export default {
 }
 
 .cardColorBorderPassengerPeriods {
-    background: white;
     border-color: white !important;
 }
 </style>
