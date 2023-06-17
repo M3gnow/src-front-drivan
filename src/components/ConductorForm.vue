@@ -2,75 +2,75 @@
     <div class="container mt-3">
         <div>
             <div>
-                <h2>Dados Pessoais</h2>
+                <h2 class="textWhite">Dados Pessoais</h2>
             </div>
 
             <div class="layoutFormnDefault">
                 <div class="input-container">
-                    <label for="name">Nome do condutor</label>
+                    <label class="textWhite" for="name">Nome do condutor</label>
                     <input type="text" id="name" name="name" v-model="profileConductor.name" placeholder="Digite seu nome">
                 </div>
 
                 <div class="input-container">
-                    <label for="cpf">CPF do condutor</label>
+                    <label class="textWhite" for="cpf">CPF do condutor</label>
                     <input type="text" id="cpf" name="cpf" v-model="profileConductor.cpf" placeholder="Digite seu CPF">
                 </div>
 
                 <div class="input-container">
-                    <label for="cpf">CNH do condutor</label>
+                    <label class="textWhite" for="cpf">CNH do condutor</label>
                     <input type="text" id="cnh" name="cnh" v-model="profileConductor.cnh" placeholder="Digite sua CNH">
                 </div>
 
                 <div class="input-container">
-                    <label for="dataNascimento">Data de Nascimento</label>
+                    <label class="textWhite" for="dataNascimento">Data de Nascimento</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="dtaNascimento" v-model="profileConductor.dtaNascimento">
                     </div>
                 </div>
 
                 <div class="input-container">
-                    <label for="email">E-mail do condutor</label>
+                    <label class="textWhite" for="email">E-mail do condutor</label>
                     <input type="text" id="email" name="email" v-model="profileConductor.email" placeholder="Digite seu e-mail">
                 </div>
 
                 <div class="input-container">
-                    <label for="phone">Celular do condutor</label>
+                    <label class="textWhite" for="phone">Celular do condutor</label>
                     <input type="text" id="phone" name="phone" v-model="profileConductor.phone" placeholder="(XX)XXXXX-XXXX">
                 </div>
 
                 <div class="input-container">
-                    <label for="password">Senha de acesso Drivan</label>
+                    <label class="textWhite" for="password">Senha de acesso Drivan</label>
                     <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
                 </div>
 
                 <div class="input-container">
-                    <label for="secondPassword">Confirme sua senha</label>
+                    <label class="textWhite" for="secondPassword">Confirme sua senha</label>
                     <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
                 </div>
             </div>
 
             <div class="mt-3">
-                <h2>Informações do seu Veículo</h2>
+                <h2 class="textWhite">Informações do seu Veículo</h2>
             </div>
 
             <div class="layoutFormnDefault">
                 <div class="input-container">
-                    <label for="modelVehicle">Modelo do veículo</label>
+                    <label class="textWhite" for="modelVehicle">Modelo do veículo</label>
                     <input type="text" id="modelVehicle" name="modelVehicle" v-model="vehicle.modelVehicle" placeholder="Digite o modelo">
                 </div>
 
                 <div class="input-container">
-                    <label for="boardVehicle">Placa do veículo</label>
+                    <label class="textWhite" for="boardVehicle">Placa do veículo</label>
                     <input type="text" id="boardVehicle" name="boardVehicle" v-model="vehicle.boardVehicle" placeholder="Digite a placa">
                 </div>
 
                 <div class="input-container">
-                    <label for="colorVehicle">Cor do veículo</label>
+                    <label class="textWhite" for="colorVehicle">Cor do veículo</label>
                     <input type="text" id="colorVehicle" name="colorVehicle" v-model="vehicle.colorVehicle" placeholder="Digite a cor">
                 </div>
 
                 <div class="input-container">
-                    <label for="capacityVehicle">Capacidade do veículo</label>
+                    <label class="textWhite" for="capacityVehicle">Capacidade do veículo</label>
                     <input 
                         id="capacityVehicle"
                         type="text"
@@ -82,27 +82,27 @@
             </div>
 
             <div>
-                <h2>Localização</h2>
+                <h2 class="textWhite">Localização</h2>
             </div>
 
             <div class="layoutFormnDefault">
                 <div class="input-container">
-                    <label for="streetAddress">Rua</label>
+                    <label class="textWhite" for="streetAddress">Rua</label>
                     <input type="text" id="streetAddress" name="streetAddress" v-model="adressConductor.streetAddress" placeholder="Rua">
                 </div>
 
                 <div class="input-container">
-                    <label for="numberStreetAddress">Número</label>
+                    <label class="textWhite" for="numberStreetAddress">Número</label>
                     <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="adressConductor.numberStreetAddress" placeholder="Número">
                 </div>
 
                 <div class="input-container">
-                    <label for="cepAddress">CEP</label>
+                    <label class="textWhite" for="cepAddress">CEP</label>
                     <input type="text" id="cepAddress" name="cepAddress" v-model="adressConductor.cepAddress" placeholder="CEP">
                 </div>
 
                 <div class="input-container col-md-6">
-                    <label for="period">Selecione o Estado</label>
+                    <label class="textWhite" for="period">Selecione o Estado</label>
                     <v-select 
                         class="input-select"
                         v-model="adressConductor.stateAddress" 
@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="input-container col-md-5">
-                    <label for="period">Selecione o UF</label>
+                    <label class="textWhite" for="period">Selecione o UF</label>
                     <v-select 
                         class="input-select"
                         v-model="adressConductor.ufAddress" 
@@ -122,17 +122,17 @@
                 </div>
 
                 <div class="input-container">
-                    <label for="bairroAddress">Bairro</label>
+                    <label class="textWhite" for="bairroAddress">Bairro</label>
                     <input type="text" id="bairroAddress" name="bairroAddress" v-model="adressConductor.bairroAddress" placeholder="Bairro">
                 </div>
 
                 <div class="input-container">
-                    <label for="cityAddress">Cidade</label>
+                    <label class="textWhite" for="cityAddress">Cidade</label>
                     <input type="text" id="cityAddress" name="cityAddress" v-model="adressConductor.cityAddress" placeholder="Cidade">
                 </div>
 
                 <div class="input-container">
-                    <label for="complementAddress">Complemento</label>
+                    <label class="textWhite" for="complementAddress">Complemento</label>
                     <input type="text" id="complementAddress" name="complementAddress" v-model="adressConductor.complementAddress" placeholder="Complemento">
                 </div>
             </div>
@@ -391,5 +391,8 @@ export default {
         width: 400px !important;
     }
 
+    .textWhite {
+        color: white !important;
+    }
 
 </style>

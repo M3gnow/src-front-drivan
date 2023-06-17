@@ -1,100 +1,95 @@
 <template>
-  <div class="container mt-3">
-        <div>
+    <div class="container mt-3">
+        <div class="mt-3">
             <div>
-                <h2>Identificação</h2>
+                <h2 class="textWhite mt-3">Identificação</h2>
             </div>
 
-            <div class="layoutFormnDefault">
-                <div class="input-container col-md-6">
-                    <label for="namePassenger">Nome do(a) Passageiro(a)</label>
-                    <input class="width100" type="text" id="namePassenger" name="namePassenger" v-model="Passenger.namePassenger" placeholder="Digite o nome">
+            <div class="card p-3 cardColorBorder layoutFormnDefault">
+                <div class="d-flex justify-content-between">
+                    <div class="input-container col-md-6">
+                        <label class="textWhite" for="namePassenger">Nome do(a) Passageiro(a) *</label>
+                        <input class="width100" type="text" id="namePassenger" name="namePassenger" v-model="Passenger.namePassenger" placeholder="Digite o nome">
+                    </div>
+
+                    <div class="input-container col-md-6">
+                        <label class="textWhite" for="responsiblePassenger">Responsavel (CPF)</label>
+                        <input class="width100" type="text" id="responsiblePassengers" name="responsiblePassengers" v-model="Passenger.responsiblePassengers" placeholder="Digite o cpf" @change="$event => onlyNumber($event)">
+                    </div>
                 </div>
 
-                <div class="input-container col-md-6">
-                    <label for="responsiblePassenger">Responsavel</label>
-                    <v-select 
-                        class="input-select"
-                        v-model="Passenger.selectedResponsiblePassengers" 
-                        :options="responsibles" 
-                        @search="doSearchResponsible">
-                    </v-select>
-                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="input-container col-md-6">
+                        <label class="textWhite" for="schoolPassenger">Escola</label>
+                        <input class="width100" type="text" id="selectedSchoolPassenger" name="selectedSchoolPassenger" v-model="Passenger.selectedSchoolPassenger" placeholder="" disabled>
+                    </div>
 
-                <div class="input-container col-md-6">
-                    <label for="schoolPassenger">Escola</label>
-                    <v-select 
-                        class="input-select"
-                        v-model="Passenger.selectedSchoolPassenger" 
-                        :options="schools" 
-                        @search="doSearchSchool">
-                    </v-select>
-                </div>
-
-                <div class="input-container col-md-6">
-                    <label for="period">Periodo</label>
-                    <v-select 
-                        class="input-select"
-                        v-model="Passenger.selectedPeriodPassenger" 
-                        :options="periods" 
-                        @search="doSearchPeriod">
-                    </v-select>
+                    <div class="input-container col-md-6">
+                        <label class="textWhite" for="period">Periodo</label>
+                        <input class="width100" type="text" id="selectedPeriodPassenger" name="selectedPeriodPassenger" v-model="Passenger.selectedPeriodPassenger" placeholder="" disabled>
+                    </div>
                 </div>
             </div>
 
             <div>
-                <h2>Localização</h2>
+                <h2 class="textWhite mt-3">Localização</h2>
             </div>
 
-            <div class="layoutFormnDefault">
-                <div class="input-container">
-                    <label for="streetAddress">Rua</label>
-                    <input type="text" id="streetAddress" name="streetAddress" v-model="Address.streetAddress" placeholder="Rua">
+            <div class="card p-3 cardColorBorder layoutFormnDefault">
+                <div class="d-flex justify-content-between">
+                    <div class="input-container">
+                        <label class="textWhite" for="streetAddress">Rua</label>
+                        <input type="text" id="streetAddress" name="streetAddress" v-model="Address.streetAddress" placeholder="Rua">
+                    </div>
+
+                    <div class="input-container">
+                        <label class="textWhite" for="numberStreetAddress">Número</label>
+                        <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="Address.numberStreetAddress" placeholder="Número">
+                    </div>
+
+                    <div class="input-container">
+                        <label class="textWhite" for="cepAddress">CEP</label>
+                        <input type="text" id="cepAddress" name="cepAddress" v-model="Address.cepAddress" placeholder="CEP">
+                    </div>
                 </div>
 
-                <div class="input-container">
-                    <label for="numberStreetAddress">Número</label>
-                    <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="Address.numberStreetAddress" placeholder="Número">
-                </div>
+                <div class="d-flex">
+                    <div class="input-container">
+                        <label class="textWhite" for="period">Selecione o Estado</label>
+                        <v-select 
+                            class="input-select"
+                            v-model="Address.stateAddress" 
+                            :options="states" 
+                            @search="doSearchPeriod">
+                        </v-select>
+                    </div>
 
-                <div class="input-container">
-                    <label for="cepAddress">CEP</label>
-                    <input type="text" id="cepAddress" name="cepAddress" v-model="Address.cepAddress" placeholder="CEP">
+                    <div class="input-container">
+                        <label class="textWhite" for="period">Selecione o UF</label>
+                        <v-select 
+                            class="input-select"
+                            v-model="Address.ufAddress" 
+                            :options="ufsStates" 
+                            @search="doSearchPeriod">
+                        </v-select>
+                    </div>
                 </div>
+                
+                <div class="d-flex justify-content-between">
+                    <div class="input-container">
+                        <label class="textWhite" for="bairroAddress">Bairro</label>
+                        <input type="text" id="bairroAddress" name="bairroAddress" v-model="Address.bairroAddress" placeholder="Bairro">
+                    </div>
 
-                <div class="input-container col-md-6">
-                    <label for="period">Selecione o Estado</label>
-                    <v-select 
-                        class="input-select"
-                        v-model="Address.stateAddress" 
-                        :options="states" 
-                        @search="doSearchPeriod">
-                    </v-select>
-                </div>
+                    <div class="input-container">
+                        <label class="textWhite" for="cityAddress">Cidade</label>
+                        <input type="text" id="cityAddress" name="cityAddress" v-model="Address.cityAddress" placeholder="Cidade">
+                    </div>
 
-                <div class="input-container col-md-5">
-                    <label for="period">Selecione o UF</label>
-                    <v-select 
-                        class="input-select"
-                        v-model="Address.ufAddress" 
-                        :options="ufsStates" 
-                        @search="doSearchPeriod">
-                    </v-select>
-                </div>
-
-                <div class="input-container">
-                    <label for="bairroAddress">Bairro</label>
-                    <input type="text" id="bairroAddress" name="bairroAddress" v-model="Address.bairroAddress" placeholder="Bairro">
-                </div>
-
-                <div class="input-container">
-                    <label for="cityAddress">Cidade</label>
-                    <input type="text" id="cityAddress" name="cityAddress" v-model="Address.cityAddress" placeholder="Cidade">
-                </div>
-
-                <div class="input-container">
-                    <label for="complementAddress">Complemento</label>
-                    <input type="text" id="complementAddress" name="complementAddress" v-model="Address.complementAddress" placeholder="Complemento">
+                    <div class="input-container">
+                        <label class="textWhite" for="complementAddress">Complemento</label>
+                        <input type="text" id="complementAddress" name="complementAddress" v-model="Address.complementAddress" placeholder="Complemento">
+                    </div>
                 </div>
             </div>
 
@@ -110,15 +105,21 @@
 import 'vue-select/dist/vue-select.css';
 import { createPassenger } from '../services/PassergerService';
 import { builderPassengerFromService } from '../model/passengerModel';
+import { useRoute } from 'vue-router'
+import { getSchoolById } from '../services/SchoolService'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
 
 export default {
     name: 'PassengersForm',
     data: function() {
+        const { params } = useRoute();
         const Passenger = {
             namePassenger: '',
-            selectedResponsiblePassengers: [],
-            selectedSchoolPassenger: [],
-            selectedPeriodPassenger: [],
+            responsiblePassengers: '',
+            selectedSchoolPassenger: '',
+            selectedPeriodPassenger: '',
+            periodId: '',
         };
 
         const Address = {
@@ -133,21 +134,14 @@ export default {
         }
 
         const responsibles = [
-            'Manoel Tavera de Araújo', 
-            'Silvia Regina da Conceição de Araújo', 
-            'Thiago Henrique de Araujo'
+            '47592262819',
+            '47592262820',
+            '47592262821'
         ];
-        const schools = [
-            'Homero fernando Milano',
-            'Benedito',
-            'Parque viviane'
-        ];
-        const periods = [
-            '08:00 - 12:00',
-            '07:00 - 12:00',
-            '13:00 - 17:00',
-            '18:00 - 22:00'
-        ];
+
+        const schools = [];
+
+        const periods = [];
 
          const states = [
             'Acre',
@@ -209,7 +203,7 @@ export default {
             'TO'
         ];
 
-        return { Address, Passenger, periods, responsibles, schools, states, ufsStates }
+        return { Address, Passenger, periods, responsibles, schools, states, ufsStates, params }
     },
     methods: {
         doSearchResponsible(event) {
@@ -224,7 +218,7 @@ export default {
         cancel() {
             this.Passenger = {
                 namePassenger: '',
-                selectedResponsiblePassengers: [],
+                responsiblePassengers: [],
                 selectedSchoolPassenger: [],
                 selectedPeriodPassenger: [],
             };
@@ -241,43 +235,87 @@ export default {
             }
         },
         checkFields(object) {
-            console.log('object', object)
             for (const field in object) {
-                console.log('field', JSON.stringify(field));
-
-
-                if (!object[field]) {
-                    console.log('field', field)
-                    return false;
+                if (field !== 'responsiblePassengers') {
+                    if (!object[field]) {
+                        return false;
+                    }
                 }
-
-
             }
 
             return true;
         },
-        async sendCreate() {
+        sendCreate() {
             if (!this.checkFields(this.Passenger)) {
                 return alert('Falta dados do passageiro')
             }
 
-            if (!this.checkFields(this.Address)) {
-                return alert('Falta dados de localização')
+            if (this.Passenger.responsiblePassengers && this.Passenger.responsiblePassengers.length < 11) {
+                return alert('Quantidade de digitos de CPF inválido!')
             }
 
-            const passenger = builderPassengerFromService(this.Passenger, this.Address)
+            if (!this.checkFields(this.Address)) {
+                return alert('Falta dados de localização!')
+            }
 
-            await createPassenger(passenger)
-                .then(response => {
-                    return alert('Cadastro passageiro realizado com sucesso!')
+            const passenger = builderPassengerFromService(this.Passenger, this.Address, this)
+            const promise = createPassenger(passenger);
+            
+            promise.then(() => {
+                setTimeout(() => this.$router.push(`/school/${this.params.school_id}/periods`), 1000)
+            });
+
+            toast.promise(
+                promise,
+                {
+                    pending: 'Processando o cadastro de Passageiro',
+                    success: 'cadastro realizado com sucesso 👌',
+                    error: 'Ocorreu um erro 🤯',
+                },
+                {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                },
+            );
+        },
+        getData(schoolId, periodId) {
+            getSchoolById(schoolId)
+                .then((data) => {
+                    this.Passenger.selectedSchoolPassenger = data.descricao;
+                    this.Passenger.selectedPeriodPassenger = this.builderLabelPeriod(data, periodId)
+                    this.Passenger.periodId = periodId;
                 })
-                .catch(err => {
-                    console.log('err', err)
-
-                    return alert('Cadastro passageiro realizado sem sucesso!')
+                .catch((e) =>{
+                    console.log('Error consult schools', e.message);
                 })
         },
-    }
+        builderLabelPeriod(school, periodId) {
+            const periodFilter = school.periodos.find((period) => period.id === parseInt(periodId));
+
+            if (periodFilter.entrada && periodFilter.saida) {
+                return `Entrada ${periodFilter.entrada} - Saida ${periodFilter.saida}`
+            } else {
+                if (periodFilter.entrada) {
+                    return `Entrada ${periodFilter.entrada}`
+                }
+
+                if (periodFilter.saida) {
+                    return `Saida ${periodFilter.saida}`
+                }
+            }
+
+            return '';
+        },
+        onlyNumber(event) {
+            if (event.target.value && event.target.value.length <= 11) {
+                this.Passenger.responsiblePassengers = event.target.value.replace(/\D/g, '');
+            } else {
+                this.Passenger.responsiblePassengers = '';
+            }
+        },
+    },
+    mounted() {
+        this.getData(this.params.school_id, this.params.period_id);
+    },
 }
 </script>
 
@@ -311,5 +349,14 @@ export default {
     .input-select {
         background-color: white; 
         height:38px;
+    }
+
+    .textWhite {
+        color: white !important;
+    }
+
+    .cardColorBorder {
+        background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
+        border-color: white !important;
     }
 </style>

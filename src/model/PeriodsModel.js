@@ -3,6 +3,8 @@ export function builderAllPeriodsById(SchoolresponseApi) {
         return {
             id: periodo.id,
             description: periodo.descricao,
+            entrada: periodo.entrada || '',
+            saida: periodo.saida || '',
             passengers : periodo.passageiros.map((passageiro) => {
                 return {
                     id : passageiro.id,

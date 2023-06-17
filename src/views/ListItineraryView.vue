@@ -7,7 +7,7 @@
                 <h1 class="m-2">
                     <i class="bi bi-calendar2-check" />
                 </h1>
-                <h1 class="m-2">
+                <h1 class="m-2 textWhite">
                     Itinerários
                 </h1>
             </div>

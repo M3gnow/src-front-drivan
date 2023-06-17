@@ -1,25 +1,25 @@
 <template>
     <div class="container mt-3">
         <div>
-            <h2>Identificação</h2>
+            <h2 class="textWhite">Identificação</h2>
         </div>
 
         <div class="card p-3 cardColorBorderItinerary">
             <div class="d-flex justify-content-between">
                 <div class="input-container descriptionPeriod">
-                    <label for="phoneSchool">Descrição do Itinerario</label>
+                    <label for="phoneSchool" class="textWhite">Descrição do Itinerario</label>
                     <input class="m-1 descriptionPeriod" v-model="ItineraryDescription" placeholder="Descrição">
                 </div>
             </div>
         </div>
 
         <div class="mt-3">
-            <h2>Selecione as escolas</h2>
+            <h2 class="textWhite">Selecione as escolas</h2>
         </div>
 
         <div class="card p-3 cardColorBorderItinerary d-flex justify-content-between">
             <div class="input-container col-md-12">
-                <label for="phoneSchool">Escolas</label>
+                <label for="phoneSchool" class="textWhite">Escolas</label>
                 <div>
                     <v-select 
                         class="input-select"
@@ -34,19 +34,19 @@
         
         <div v-if="schoolSelected.length">
             <div class="mt-3">
-                <h2>Monte o Itinerário</h2>
+                <h2 class="textWhite">Monte o Itinerário</h2>
             </div>
 
             <div class="card p-3 cardColorBorderItinerary mt-3" v-bind:key="school.id" v-for="school of schoolSelected">
                 <div class="input-container descriptionPeriod">
-                    <label for="phoneSchool">Escola</label>
+                    <label for="phoneSchool" class="textWhite">Escola</label>
                     <input class="m-1 descriptionPeriod" v-model="school.descricao" disabled>
                 </div>
 
                 <div class="card p-3 cardColorBorderItinerary mt-3" v-bind:key="period.id" v-for="period of school.periodos">
                     <div class="d-flex justify-content-between">
                         <div class="input-container col-md-4">
-                            <label for="phoneSchool">Período</label>
+                            <label for="phoneSchool" class="textWhite">Período</label>
                             <div>
                                 <input class="m-1 descriptionPeriod" v-model="period.descricao" disabled>
                             </div>
@@ -54,9 +54,9 @@
 
                         <div class="input-container">
                             <div class="d-flex justify-content-around">
-                                <label for="phoneSchool">Tipo do Período</label>
-                                <label v-if=" period.entrada">Entrada: {{ period.entrada }}</label>
-                                <label v-if=" period.saida">Saida: {{ period.saida }}</label>
+                                <label for="phoneSchool" class="textWhite">Tipo do Período</label>
+                                <label v-if=" period.entrada" class="textWhite">Entrada: {{ period.entrada }}</label>
+                                <label v-if=" period.saida" class="textWhite">Saida: {{ period.saida }}</label>
                             </div>
                             <div>
                                 <v-select 
@@ -78,25 +78,25 @@
             </div>
 
             <div class="mt-3">
-                <h2>Itinerários Confirmados</h2>
+                <h2 class="textWhite">Itinerários Confirmados</h2>
             </div>
 
             <div>
                 <table class="table table-hover mt-3 table-bordered">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">Escola</th>
-                            <th class="text-center" scope="col">Periodo</th>
-                            <th class="text-center" scope="col">Tipo</th>
-                            <th class="text-center" scope="col">Ações</th>
+                            <th class="text-center textWhite" scope="col">Escola</th>
+                            <th class="text-center textWhite" scope="col">Periodo</th>
+                            <th class="text-center textWhite" scope="col">Tipo</th>
+                            <th class="text-center textWhite" scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="itinerary of itinerariesConfirmed">
-                            <td class="text-center">{{ itinerary.escolaDescription }}</td>
-                            <td class="text-center">{{ itinerary.periodoDescription }}</td>
-                            <td class="text-center">{{ itinerary.tipoMovimentacao === 1 ? 'entrada' : 'saida' }}</td>
-                            <td class="text-center">
+                            <td class="text-center textWhite">{{ itinerary.escolaDescription }}</td>
+                            <td class="text-center textWhite">{{ itinerary.periodoDescription }}</td>
+                            <td class="text-center textWhite">{{ itinerary.tipoMovimentacao === 1 ? 'entrada' : 'saida' }}</td>
+                            <td class="text-center textWhite">
                                 <button class="btn btn-outline-danger m-1" @click="removeItinerary(itinerary.escolaId, itinerary.periodoId)">
                                     Remover
                                 </button>
@@ -252,5 +252,9 @@ export default {
     .cardColorBorderItinerary {
         background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
         border-color: white !important;
+    }
+
+    .textWhite {
+        color: white !important;
     }
 </style>

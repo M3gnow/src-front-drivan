@@ -19,7 +19,7 @@ const routes = [
   { path: '/', component: Login},
   
   /* Registers */
-  { path: '/passengers', component: Passengers },
+  { path: '/schools/:school_id/periods/:period_id/passengers', component: Passengers },
   { path: '/schools', component: Schools },
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
@@ -38,7 +38,7 @@ const routes = [
   { path: '/school/:school_id', component: SchoolView },
   
   /* View Passenger */
-  { path: '/passenger/:passenger_id', component: PassengerView },
+  { path: '/schools/:school_id/periods/:periods_id/passengers/:passenger_id', component: PassengerView },
 
   /* View Responsible */
   { path: '/responsible/:responsible_id', component: ResponsibleView },

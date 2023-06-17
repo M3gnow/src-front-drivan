@@ -7,7 +7,7 @@
                 <h1 class="m-2">
                     <i class="bi bi-house-heart"></i>
                 </h1>
-                <h1 class="m-2">
+                <h1 class="m-2 textWhite">
                     Endereco
                 </h1>
             </div>
@@ -17,22 +17,22 @@
     <div class="container mt-4">
         <div class="layoutFormnDefault">
             <div class="input-container">
-                <label for="streetAddress">Rua</label>
+                <label class="textWhite" for="streetAddress">Rua</label>
                 <input type="text" id="streetAddress" name="streetAddress" v-model="address.streetAddress" placeholder="Rua">
             </div>
 
             <div class="input-container">
-                <label for="numberStreetAddress">Número</label>
+                <label class="textWhite" for="numberStreetAddress">Número</label>
                 <input type="text" id="numberStreetAddress" name="numberStreetAddress" v-model="address.numberStreetAddress" placeholder="Número">
             </div>
 
             <div class="input-container">
-                <label for="cepAddress">CEP</label>
+                <label class="textWhite" for="cepAddress">CEP</label>
                 <input type="text" id="cepAddress" name="cepAddress" v-model="address.cepAddress" placeholder="CEP">
             </div>
 
             <div class="input-container col-md-6">
-                <label for="period">Selecione o Estado</label>
+                <label class="textWhite" for="period">Selecione o Estado</label>
                 <v-select 
                     class="input-select"
                     v-model="address.stateAddress" 
@@ -42,7 +42,7 @@
             </div>
 
             <div class="input-container col-md-5">
-                <label for="period">Selecione o UF</label>
+                <label class="textWhite" for="period">Selecione o UF</label>
                 <v-select 
                     class="input-select"
                     v-model="address.ufAddress" 
@@ -52,17 +52,17 @@
             </div>
 
             <div class="input-container">
-                <label for="bairroAddress">Bairro</label>
+                <label class="textWhite" for="bairroAddress">Bairro</label>
                 <input type="text" id="bairroAddress" name="bairroAddress" v-model="address.bairroAddress" placeholder="Bairro">
             </div>
 
             <div class="input-container">
-                <label for="cityAddress">Cidade</label>
+                <label class="textWhite" for="cityAddress">Cidade</label>
                 <input type="text" id="cityAddress" name="cityAddress" v-model="address.cityAddress" placeholder="Cidade">
             </div>
 
             <div class="input-container">
-                <label for="complementAddress">Complemento</label>
+                <label class="textWhite" for="complementAddress">Complemento</label>
                 <input type="text" id="complementAddress" name="complementAddress" v-model="address.complementAddress" placeholder="Complemento">
             </div>
         </div>

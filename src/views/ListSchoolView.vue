@@ -6,7 +6,7 @@
                 <h1 class="m-2">
                     <i class="bi bi-mortarboard" />
                 </h1>
-                <h1 class="m-2">
+                <h1 class="m-2 textWhite">
                     Escolas
                 </h1>
             </div>

@@ -51,4 +51,8 @@ export default {
   label {
     color: white !important;
   }
+
+  .textWhite {
+      color: white !important;
+  }
 </style>

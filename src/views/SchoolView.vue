@@ -7,7 +7,7 @@
                 <h1 class="m-2">
                     <i class="bi bi-mortarboard" />
                 </h1>
-                <h1 class="m-2">
+                <h1 class="m-2 textWhite">
                     Escola
                 </h1>
             </div>
@@ -17,17 +17,17 @@
     <div class="container mt-2">
         <div class="layoutFormnDefault">
             <div class="input-container">
-                <label for="nameSchool">Nome da escola</label>
+                <label class="textWhite" for="nameSchool">Nome da escola</label>
                 <input type="text" id="nameSchool" name="nameSchool" v-model="School.nameSchool" placeholder="Nome da escola">
             </div>
 
             <div class="input-container">
-                <label for="emailSchool">E-mail</label>
+                <label class="textWhite" for="emailSchool">E-mail</label>
                 <input type="text" id="emailSchool" name="emailSchool" v-model="School.emailSchool" placeholder="E-mail">
             </div>
 
             <div class="input-container">
-                <label for="phoneSchool">Telefone</label>
+                <label class="textWhite" for="phoneSchool">Telefone</label>
                 <input type="text" id="phoneSchool" name="phoneSchool" v-model="School.phoneSchool" placeholder="Telefone">
             </div>
         </div>

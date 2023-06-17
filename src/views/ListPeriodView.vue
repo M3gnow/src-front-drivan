@@ -14,78 +14,75 @@
         </div>
     </div>
 
-    <div class="mt-3 container">
-        <div class="accordion mt-2" v-bind:key="period.id" v-for="period of periods">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button cardHeader collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
-                        {{ period.description }}
-                    </button>
-                </h2>
-
-                <div id="collapseOne" class="accordion-collapse collapse m-4" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <table class="table table-hover mt-3">
-                            <thead>
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Passageiro</th>
-                                <th scope="col">Endereço</th>
-                                <th scope="col">Responsavel</th>
-                                <th scope="col">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="passenger of period.passengers" v-bind:key="passenger.id">
-                                    
-                                    <th scope="row">{{ passenger.id }}</th>
-                                    
-                                    <td class="">{{ passenger.name }}</td>
-                                    
-                                    <td>
-                                        <button class="btn btn-outline-success m-1" @click="goToViewAddress(passenger.endereco.id)">
-                                            <i class="bi bi-house-heart iconButtonTable"/>
-                                        </button>
-                                    </td>
-
-                                    <td>
-                                        <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsavel.id)">
-                                            <i class="bi bi-person-heart iconButtonTable"/>
-                                        </button>
-                                    </td>
-
-                                    <td>
-                                        <button class="btn btn-outline-warning m-1" @click="goToViewPassenger(passenger.id)">
-                                            <i class="bi bi-person-badge iconButtonTable"/>
-                                        </button>
-
-                                        <button class="btn btn-outline-danger m-1">
-                                            Remover
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="row">
-                        <button class="btn btn-outline-danger m-1">
-                            <i class="bi bi-calendar2-check m-1" />
-                            Excluir Período
-                        </button>
-                    </div>
+    <div class="mt-3 container" v-bind:key="period.id" v-for="period of periods">
+        <div class="card p-3 cardColorBorderPassengerPeriods d-flex">
+            <div class="card cardColorBorderPassengerPeriods card-title p-3 ">
+                <div class="d-flex justify-content-between">
+                    <h4 v-if="period.entrada">Entrada: {{ period.entrada }}</h4>
+                    <h4 v-if="period.saida">Saida: {{ period.saida }}</h4>    
                 </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-success m-1" @click="goToViewCreatePassenger(period.id)">
+                    Adicionar Passageiro
+                </button>
+            </div>
+
+            <div>
+                <table class="table table-hover mt-3 table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Passageiro</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Responsavel</th>
+                        <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="passenger of period.passengers" v-bind:key="passenger.id">
+                            
+                            <th scope="row">{{ passenger.id }}</th>
+                            
+                            <td class="">{{ passenger.name }}</td>
+                            
+                            <td>
+                                <button class="btn btn-outline-success m-1" @click="goToViewAddress(passenger.endereco.id)">
+                                    <i class="bi bi-house-heart iconButtonTable"/>
+                                </button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsavel.id)">
+                                    <i class="bi bi-person-heart iconButtonTable"/>
+                                </button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-outline-warning m-1" @click="goToViewPassenger(period.id, passenger.id)">
+                                    <i class="bi bi-person-badge iconButtonTable"/>
+                                </button>
+
+                                <button class="btn btn-outline-danger m-1">
+                                    Remover
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container row mt-3">
+                <button class="btn btn-danger m-1">
+                    <i class="bi bi-calendar2-check m-1" />
+                    Excluir Período
+                </button>
             </div>
         </div>
     </div>
 
     <div class="mt-3 container">
-        <div class="d-flex justify-content-between">
-            <button class="btn btn-outline-success m-1" @click="goToViewCreatePassenger()">
-                Adicionar Passageiro
-            </button>
-            
+        <div class="d-flex justify-content-end">
             <button class="btn btn-outline-warning m-1" @click="goToViewCreatePassenger()">
                 Adicionar Período
             </button>
@@ -131,11 +128,12 @@ export default {
         goToViewResponsible(id) {
             this.$router.push(`/responsible/${id}`);
         },
-        goToViewPassenger(id) {
-            this.$router.push(`/passenger/${id}`);
+        goToViewPassenger(periodId, passengerId) {
+            this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers/${passengerId}`);
         },
-        goToViewCreatePassenger() {
-            this.$router.push('/passengers');
+        goToViewCreatePassenger(periodId) {
+
+            this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers`);
         }
     }
 }
@@ -145,5 +143,10 @@ export default {
 
 .iconButtonTable {
     font-size: 20px !important;
+}
+
+.cardColorBorderPassengerPeriods {
+    background: white;
+    border-color: white !important;
 }
 </style>

@@ -1,47 +1,47 @@
 <template>
     <div class="container mt-3">
         <div>
-            <div>
-                <h2>Identificação e contato</h2>
+            <div class="mt-3">
+                <h2 class="textWhite">Identificação e contato</h2>
             </div>
 
             <div class="card p-3 cardColorBorder">
                 <div class="d-flex layoutFormnDefault justify-content-between">
                     <div class="input-container">
-                        <label for="nameSchool">Nome da escola</label>
+                        <label class="textWhite" for="nameSchool">Nome da escola</label>
                         <input class="width350px" type="text" id="nameSchool" name="nameSchool" v-model="School.nameSchool"
                             placeholder="Nome da escola">
                     </div>
 
                     <div class="input-container">
-                        <label for="emailSchool">E-mail</label>
+                        <label class="textWhite" for="emailSchool">E-mail</label>
                         <input class="width350px" type="text" id="emailSchool" name="emailSchool"
                             v-model="School.emailSchool" placeholder="E-mail">
                     </div>
 
                     <div class="input-container">
-                        <label for="phoneSchool">Telefone</label>
+                        <label class="textWhite" for="phoneSchool">Telefone</label>
                         <input class="width350px" type="text" id="phoneSchool" name="phoneSchool"
                             v-model="School.phoneSchool" placeholder="Telefone">
                     </div>
                 </div>
             </div>
 
-            <div>
-                <h2>Períodos</h2>
+            <div class="mt-3">
+                <h2 class="textWhite">Períodos</h2>
             </div>
 
             <div class="card p-3 cardColorBorder">
                 <div class="d-flex justify-content-between">
                     <div class="input-container descriptionPeriod">
-                        <label for="phoneSchool">Descrição</label>
+                        <label class="textWhite" for="phoneSchool">Descrição</label>
                         <input class="m-1 descriptionPeriod" v-model="newPeriods.description" placeholder="Descrição">
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between mt-2" style="align-items: center;">
                     <div class="input-container">
-                        <label for="phoneSchool">Entrada</label>
+                        <label class="textWhite" for="phoneSchool">Entrada</label>
                         <div class="d-flex">
                             <input class="m-1 width200px" v-model="newPeriods.inputHour" placeholder="Hora de entrada"
                                 v-on:change="onlyNumberInputHour">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="input-container">
-                        <label for="phoneSchool">Saída</label>
+                        <label class="textWhite" for="phoneSchool">Saída</label>
                         <div class="d-flex">
                             <input class="m-1 width200px" v-model="newPeriods.ouputHour" placeholder="Hora de Saída"
                                 v-on:change="onlyNumberOutputHour">
@@ -73,7 +73,7 @@
 
             <div class="card p-3 cardColorBorder mt-3" v-if="periods.labels.length">
                 <div class="input-container col-md-12 mt-3">
-                    <label for="period">Periodos selecionados</label>
+                    <label class="textWhite" for="period">Periodos selecionados</label>
 
                     <v-select multiple class="input-select" v-model="periods.labels" :options="periods.labels"
                         v-on:change="changeRoute" @search="doSearchPeriod">
@@ -82,57 +82,57 @@
             </div>
 
             <div class="mt-4">
-                <h2>Localização</h2>
+                <h2 class="textWhite">Localização</h2>
             </div>
 
             <div class="card cardColorBorder p-3">
                 <div class="layoutFormnDefault mt-4">
                     <div class="input-container">
-                        <label for="streetAddress">Rua</label>
+                        <label class="textWhite" for="streetAddress">Rua</label>
                         <input type="text" id="streetAddress" name="streetAddress" v-model="Address.streetAddress"
                             placeholder="Rua">
                     </div>
 
                     <div class="input-container">
-                        <label for="numberStreetAddress">Número</label>
+                        <label class="textWhite" for="numberStreetAddress">Número</label>
                         <input type="text" id="numberStreetAddress" name="numberStreetAddress"
                             v-model="Address.numberStreetAddress" placeholder="Número">
                     </div>
 
                     <div class="input-container">
-                        <label for="cepAddress">CEP</label>
+                        <label class="textWhite" for="cepAddress">CEP</label>
                         <input class="width200px" type="text" id="cepAddress" name="cepAddress" v-model="Address.cepAddress"
                             placeholder="CEP">
                     </div>
 
                     <div class="input-container col-md-6">
-                        <label for="period">Selecione o Estado</label>
+                        <label class="textWhite" for="period">Selecione o Estado</label>
                         <v-select class="input-select" v-model="Address.stateAddress" :options="states"
                             @search="doSearchPeriod">
                         </v-select>
                     </div>
 
                     <div class="input-container col-md-5">
-                        <label for="period">Selecione o UF</label>
+                        <label class="textWhite" for="period">Selecione o UF</label>
                         <v-select class="input-select" v-model="Address.ufAddress" :options="ufsStates"
                             @search="doSearchPeriod">
                         </v-select>
                     </div>
 
                     <div class="input-container">
-                        <label for="bairroAddress">Bairro</label>
+                        <label class="textWhite" for="bairroAddress">Bairro</label>
                         <input type="text" id="bairroAddress" name="bairroAddress" v-model="Address.bairroAddress"
                             placeholder="Bairro">
                     </div>
 
                     <div class="input-container">
-                        <label for="cityAddress">Cidade</label>
+                        <label class="textWhite" for="cityAddress">Cidade</label>
                         <input type="text" id="cityAddress" name="cityAddress" v-model="Address.cityAddress"
                             placeholder="Cidade">
                     </div>
 
                     <div class="input-container">
-                        <label for="complementAddress">Complemento</label>
+                        <label class="textWhite" for="complementAddress">Complemento</label>
                         <input class="width200px" type="text" id="complementAddress" name="complementAddress"
                             v-model="Address.complementAddress" placeholder="Complemento">
                     </div>
@@ -463,6 +463,10 @@ input {
 
 .cardColorBorder {
     background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
-    border-color: aquamarine !important;
+    border-color: white !important;
+}
+
+.textWhite {
+    color: white !important;
 }
 </style>

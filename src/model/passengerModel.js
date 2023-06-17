@@ -13,7 +13,7 @@ export function builderPassengerFromService(passenger, adress) {
     return {
         nome: passenger.namePassenger,
         endereco,
-        periodoId: 1,
+        periodoId: passenger.periodId,
         cpf: passenger.selectedResponsiblePassengers
     }
 }
