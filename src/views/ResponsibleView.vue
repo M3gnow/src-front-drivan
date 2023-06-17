@@ -79,11 +79,15 @@
       mounted() {
         getPassengerById(this.params.passenger_id)
             .then((data) => {
-                this.Responsible = {
-                    nameResponsible: data.nome,
-                    cpfResponsible: data.cpf,
-                    phoneResponsible: data.celular,
-                    emailResponsible: data.email,
+                if (data.responsavel && data.responsavel.id) {
+                    const dataResponsible = data.responsavel
+
+                    this.Responsible = {
+                        nameResponsible: dataResponsible.nome,
+                        cpfResponsible: dataResponsible.cpf,
+                        phoneResponsible: dataResponsible.celular,
+                        emailResponsible: dataResponsible.email,
+                    };
                 }
             })
             .catch((e) => {
