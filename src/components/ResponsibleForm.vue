@@ -13,12 +13,12 @@
 
                 <div class="input-container">
                     <label class="textWhite" for="cpfResponsible">CPF do Responsavel</label>
-                    <input type="text" id="cpfResponsible" name="cpfResponsible" v-model="Responsible.cpfResponsible" placeholder="CPF do responsavel">
+                    <input type="text" id="cpfResponsible" name="cpfResponsible" v-model="Responsible.cpfResponsible" placeholder="CPF do responsavel" @change="$event => onlyNumberCpf($event)">
                 </div>
 
                 <div class="input-container">
                     <label class="textWhite" for="phoneResponsible">Celular do Responsavel</label>
-                    <input type="text" id="phoneResponsible" name="phoneResponsible" v-model="Responsible.phoneResponsible" placeholder="Celular do responsavel">
+                    <input type="text" id="phoneResponsible" name="phoneResponsible" v-model="Responsible.phoneResponsible" placeholder="Celular do responsavel" @change="$event => onlyNumberPhone($event)">
                 </div>
 
                 <div class="input-container">
@@ -29,26 +29,89 @@
 
             <div class="mt-3 d-flex justify-content-end">
                 <button type="submit" class="btn btn-light me-3">Cancelar</button>
-                <button type="submit" class="btn btn-warning">Enviar</button>
+                <button type="submit" class="btn btn-warning" @click="sendCreate()">Enviar</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { createResponsible } from '../services/responsibleService'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import { useRoute } from 'vue-router'
+import { builderResponsavelFromService } from '../model/responsavelModel'
+
 export default {
     name: 'ResponsibleForm',
     data: function() {
+        const { params } = useRoute();
         const Responsible = {
             nameResponsible: '',
             cpfResponsible: '',
             phoneResponsible: '',
             emailResponsible: '',
+            passengerId: ''
         };
 
-
-        return { Responsible }
+        return { Responsible, params }
     },
+    methods: {
+        checkFields(object) {
+            for (const field in object) {
+                if (field !== 'responsiblePassengers') {
+                    if (!object[field]) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        },
+        sendCreate() {
+            this.Responsible.passengerId = this.params.passenger_id;
+
+            if (!this.checkFields(this.Responsible)) {
+                return alert('Todos campos são obrigatórios')
+            }
+
+            const dataResponsible = builderResponsavelFromService(this.Responsible);
+            const promise = createResponsible(dataResponsible)
+            
+            const schoolId = this.params.school_id
+            const periodId = this.params.period_id
+            const passengerId = this.params.passenger_id
+            const router = `/schools/${schoolId}/periods/${periodId}/passengers/${passengerId}`;
+
+            promise.then((result) => setTimeout(() => this.$router.push(router), 1000));
+            
+            toast.promise(
+                promise,
+                {
+                    pending: 'Processando o cadastro de itínerario',
+                    success: 'cadastro realizado com sucesso 👌',
+                    error: 'Ocorreu um erro 🤯',
+                },
+                {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                },
+            );
+        },
+        onlyNumberPhone(event) {
+            if (event.target.value) {
+                this.Responsible.phoneResponsible = event.target.value.replace(/\D/g, '');
+            } else {
+                this.Responsible.phoneResponsible = '';
+            }
+        },
+        onlyNumberCpf(event) {
+            if (event.target.value && event.target.value.length <= 11) {
+                this.Responsible.cpfResponsible = event.target.value.replace(/\D/g, '');
+            } else {
+                this.Responsible.cpfResponsible = '';
+            }
+        },
+    }
 }
 </script>
 

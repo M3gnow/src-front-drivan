@@ -1,4 +1,4 @@
-import { axiosInstance, config } from './../config'
+import { axiosInstance, config } from '../config'
 
 export const createPassenger = (passenger) => {
     const request = axiosInstance.post(`${config.env.microservice.API_BASE_DRIVAN}/Passageiro`, passenger)

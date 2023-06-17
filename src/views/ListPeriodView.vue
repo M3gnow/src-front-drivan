@@ -53,7 +53,11 @@
                             </td>
 
                             <td class="text-center">
-                                <button class="btn btn-outline-success m-1" @click="goToViewResponsible(passenger.responsavel.id)">
+                                <button 
+                                    class="btn btn-outline-success m-1" 
+                                    @click="goToViewResponsible(period.id, passenger.id, passenger.responsavel.id)"
+                                    :disabled="!(passenger.responsavel && passenger.responsavel.id)"
+                                    >
                                     <i class="bi bi-person-heart iconButtonTable"/>
                                 </button>
                             </td>
@@ -131,8 +135,8 @@ export default {
         goToViewAddress(id) {
             this.$router.push(`/address/${id}`);
         },
-        goToViewResponsible(id) {
-            this.$router.push(`/responsible/${id}`);
+        goToViewResponsible(periodId, passengerId, responsavelId) {
+            this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers/${passengerId}/responsible/${responsavelId}`);
         },
         goToViewPassenger(periodId, passengerId) {
             this.$router.push(`/schools/${this.params.school_id}/periods/${periodId}/passengers/${passengerId}`);

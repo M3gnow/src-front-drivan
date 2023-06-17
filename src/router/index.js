@@ -25,7 +25,7 @@ const routes = [
   { path: '/schools', component: Schools },
   { path: '/itinerary', component: Itinerary },
   { path: '/conductor', component: Conductor },
-  { path: '/responsible', component: Responsible},
+  { path: '/schools/:school_id/periods/:period_id/passengers/:passenger_id/responsible', component: Responsible},
   { path: '/schools/:school_id/periods', component: Period },
   
   /* View Conductor */
@@ -44,7 +44,7 @@ const routes = [
   { path: '/schools/:school_id/periods/:periods_id/passengers/:passenger_id', component: PassengerView },
 
   /* View Responsible */
-  { path: '/responsible/:responsible_id', component: ResponsibleView },
+  { path: '/schools/:school_id/periods/:periods_id/passengers/:passenger_id/responsible/:responsible_id', component: ResponsibleView },
 
   /* View Period */
   { path: '/schools/:school_id/periods/:periods_id', component: PeriodView },

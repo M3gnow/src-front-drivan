@@ -103,7 +103,7 @@
 
 <script>
 import 'vue-select/dist/vue-select.css';
-import { createPassenger } from '../services/PassergerService';
+import { createPassenger } from '../services/PassengerService';
 import { builderPassengerFromService } from '../model/passengerModel';
 import { useRoute } from 'vue-router'
 import { getSchoolById } from '../services/SchoolService'

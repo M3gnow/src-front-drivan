@@ -2,13 +2,22 @@
   <TheHeader/>
     <div class="container mt-4">
         <div class="mt-2">
-            <div class="d-flex">
-                <h1 class="m-2">
-                    <i class="bi bi-person-badge" />
-                </h1>
-                <h1 class="m-2 textWhite">
-                    Passageiro
-                </h1>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <h1 class="m-2">
+                        <i class="bi bi-person-badge" />
+                    </h1>
+                    <h1 class="m-2 textWhite">
+                        Passageiro
+                    </h1>
+                </div>
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-warning" @click="goToCreateResponsible()">
+                        <i class="bi bi-person-fill-check"></i>
+                        Adicionar Responsável
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -38,11 +47,18 @@
     </div>
 
     <div class="container mt-5 d-flex justify-content-between">
-        <button type="submit" class="btn btn-success" @click="goAddressById(Passenger.endereco.id)" :disabled="!Passenger.endereco.id">
-            <i class="bi bi-house-heart"></i>
-            Ver Endereço
-        </button>
-    
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success me-2" @click="goAddressById(Passenger.endereco.id)" :disabled="!Passenger.endereco.id">
+                <i class="bi bi-house-heart"></i>
+                Ver Endereço
+            </button>
+
+            <button type="submit" class="btn btn-warning" @click="goToResponsibleById(Passenger.responsible.id)" :disabled="!Passenger.responsible.id">
+                <i class="bi bi-person-fill-check"></i>
+                Ver Responsável
+            </button>
+        </div>
+        
         <button type="submit" class="btn btn-warning">
             <i class="bi bi-person-fill-check"></i>
             Salvar
@@ -58,7 +74,7 @@
 import { useRoute } from 'vue-router'
 import TheHeader from '../components/TheHeader.vue'
 import Footer from '../components/Footer.vue'
-import { getPassengerById } from '../services/PassergerService';
+import { getPassengerById } from '../services/PassengerService';
 import { getSchoolById } from '../services/SchoolService'
 
 export default {
@@ -69,7 +85,8 @@ export default {
             responsiblePassengers: '',
             schoolPassenger: '',
             periodPassenger: '',
-            endereco: {}
+            endereco: {},
+            responsible: {}
         };
 
         const schools = [
@@ -132,6 +149,22 @@ export default {
                     console.log('Error consult schools', e.message);
                 })
         },
+        goToCreateResponsible() {
+            const schoolId = this.params.school_id;
+            const periodId = this.params.periods_id;
+            const passengerId = this.params.passenger_id;
+            const router = `/schools/${schoolId}/periods/${periodId}/passengers/${passengerId}/responsible`;
+
+            this.$router.push(router);
+        },
+        goToResponsibleById(responsibleId) {
+            const schoolId = this.params.school_id;
+            const periodId = this.params.periods_id;
+            const passengerId = this.params.passenger_id;
+            const router = `/schools/${schoolId}/periods/${periodId}/passengers/${passengerId}/responsible/${responsibleId}`;
+
+            this.$router.push(router);
+        }
     },
     mounted() {
         const schoolId = this.params.school_id;
