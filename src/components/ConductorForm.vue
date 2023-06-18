@@ -40,12 +40,12 @@
 
                 <div class="input-container">
                     <label class="textWhite" for="password">Senha de acesso Drivan</label>
-                    <input type="text" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
+                    <input type="password" id="password" name="password" v-model="profileConductor.password" placeholder="Digite sua senha">
                 </div>
 
                 <div class="input-container">
                     <label class="textWhite" for="secondPassword">Confirme sua senha</label>
-                    <input type="text" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
+                    <input type="password" id="secondPassword" name="secondPassword" v-model="profileConductor.secondPassword" placeholder="Digite sua senha novamente">
                 </div>
             </div>
 
