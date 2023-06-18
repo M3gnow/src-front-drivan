@@ -15,6 +15,9 @@ import SchoolView from '../views/SchoolView'
 import ResponsibleView from '../views/ResponsibleView'
 import Period from '../views/Period.vue'
 import PeriodView from '../views/PeriodView'
+import RouteView from '../views/RouteView'
+import RoutePreviewView from '../views/RoutePreviewView'
+import ResponsibleByPassengersView from '../views/ResponsibleByPassengersView'
 
 const routes = [
   /* Login */
@@ -44,10 +47,15 @@ const routes = [
   { path: '/schools/:school_id/periods/:periods_id/passengers/:passenger_id', component: PassengerView },
 
   /* View Responsible */
+  { path: '/responsible/:responsible_id', component: ResponsibleByPassengersView },
   { path: '/schools/:school_id/periods/:periods_id/passengers/:passenger_id/responsible/:responsible_id', component: ResponsibleView },
 
   /* View Period */
   { path: '/schools/:school_id/periods/:periods_id', component: PeriodView },
+
+  /* View Route */
+  { path: '/itineraries/:itinerary_id/route/:route_id', component: RouteView },
+  { path: '/itineraries/:itinerary_id/route', component: RoutePreviewView },
 ]
 
 const router = createRouter({

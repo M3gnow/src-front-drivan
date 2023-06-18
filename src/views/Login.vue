@@ -14,15 +14,13 @@
 
       <div class="input-container">
         <label for="name">Senha</label>
-        <input type="text" id="name" name="name" v-model="LoginModel.password" placeholder="Digite sua senha">
+        <input type="password" id="name" name="name" v-model="LoginModel.password" placeholder="Digite sua senha">
       </div>
 
       <div>
         <button type="button" class="btn btn-outline-warning buttonLogin" @click="doLogin()">Entrar</button>
       </div>
     </div>
-
-
   </div>
 
   <div class="container contentCardLogin">

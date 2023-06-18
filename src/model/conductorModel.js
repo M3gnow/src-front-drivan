@@ -49,6 +49,12 @@ export function builderConductorById(conductorResponseApi) {
         dtaNascimento: new Date(conductorResponseApi.dtaNascimento).toISOString().slice(0,10),
         endereco: {
             id: conductorResponseApi.endereco.id
+        },
+        veiculo: {
+            modelVehicle: conductorResponseApi.veiculo.modelo,
+            boardVehicle: conductorResponseApi.veiculo.placa,
+            colorVehicle: conductorResponseApi.veiculo.cor,
+            capacityVehicle: conductorResponseApi.veiculo.capacidade,
         }
     };
 

@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="d-flex">
-                            <button class="btn btn-warning m-1">
+                            <button class="btn btn-warning m-1" @click="goToCreateRoute(itinerary.id)">
                                 <i class="bi bi-sign-turn-slight-right m-1" />
                                 Gerar rota
                             </button>
@@ -115,6 +115,9 @@ export default {
         },
         goCreateItinerary() {
             this.$router.push('/itinerary');
+        },
+        goToCreateRoute(itineraryId) {
+            this.$router.push(`/itineraries/${itineraryId}/route`);
         }
     }
 }

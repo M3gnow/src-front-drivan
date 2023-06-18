@@ -80,7 +80,7 @@
         getPassengerById(this.params.passenger_id)
             .then((data) => {
                 if (data.responsavel && data.responsavel.id) {
-                    const dataResponsible = data.responsavel
+                    const dataResponsible = data.responsavel;
 
                     this.Responsible = {
                         nameResponsible: dataResponsible.nome,
