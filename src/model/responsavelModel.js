@@ -2,11 +2,10 @@ export function builderResponsavelFromService(responsavel) {
     return {
         nome: responsavel.nameResponsible,
         cpf: responsavel.cpfResponsible,
-        celular: responsavel.phoneResponsible,
+        telefone: responsavel.phoneResponsible,
         email: responsavel.emailResponsible,
-        passageiros: {
-            id: responsavel.passengerId
-        }
+        passageiroId: responsavel.passengerId
+        
     }
 }
 

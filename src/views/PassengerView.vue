@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="d-flex">
-                    <button type="submit" class="btn btn-warning" @click="goToCreateResponsible()">
+                    <button type="submit" class="btn btn-warning" v-if="!Passenger.responsible.id" @click="goToCreateResponsible()">
                         <i class="bi bi-person-fill-check"></i>
                         Adicionar Responsável
                     </button>
@@ -31,7 +31,7 @@
 
             <div class="input-container col-md-6">
                 <label class="textWhite" for="responsiblePassenger">Responsável</label>
-                <input class="width100" type="text" id="responsiblePassengers" name="responsiblePassengers" v-model="Passenger.responsiblePassengers" placeholder="Digite o CPF">
+                <input class="width100" type="text" id="responsiblePassengers" name="responsiblePassengers" v-model="Passenger.responsiblePassengers" placeholder="Sem Responsável">
             </div>
 
             <div class="input-container col-md-6">
@@ -53,7 +53,7 @@
                 Ver Endereço
             </button>
 
-            <button type="submit" class="btn btn-warning" @click="goToResponsibleById(Passenger.responsible.id)" :disabled="!Passenger.responsible.id">
+            <button type="submit" class="btn btn-warning" @click="goToResponsibleById(Passenger.responsible.id)" :disabled="Passenger.responsible.id">
                 <i class="bi bi-person-fill-check"></i>
                 Ver Responsável
             </button>
@@ -142,8 +142,10 @@ export default {
             getPassengerById(passengerId)
                 .then((data) => {
                     this.Passenger.namePassenger = data.nome;
-                    this.Passenger.responsiblePassengers = '';
+                    
                     this.Passenger.endereco.id = data.endereco.id
+                    this.Passenger.responsiblePassengers = !data.responsavel.nome ? {} : data.responsavel.nome;
+                    this.Passenger.responsible.id = !data.responsavel.id ? {} : data.responsavel.id;
                 })
                 .catch((e) => {
                     console.log('Error consult schools', e.message);

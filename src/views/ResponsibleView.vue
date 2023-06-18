@@ -85,8 +85,8 @@
                     this.Responsible = {
                         nameResponsible: dataResponsible.nome,
                         cpfResponsible: dataResponsible.cpf,
-                        phoneResponsible: dataResponsible.celular,
-                        emailResponsible: dataResponsible.email,
+                        phoneResponsible: dataResponsible.telefone,
+                        emailResponsible: dataResponsible.usuario.email,
                     };
                 }
             })
