@@ -15,6 +15,8 @@ export function builderSchoolFromService(userId,school, adress, periods) {
         escolas: [{
             descricao: school.nameSchool,
             ativa: true,
+            email:school.emailSchool,
+            telefone:school.phoneSchool,
             endereco: enderecos,
             periodos: periods
         }]
