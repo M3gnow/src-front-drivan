@@ -53,7 +53,7 @@
                 Ver Endereço
             </button>
 
-            <button type="submit" class="btn btn-warning" @click="goToResponsibleById(Passenger.responsible.id)" :disabled="Passenger.responsible.id">
+            <button type="submit" class="btn btn-warning" @click="goToResponsibleById(Passenger.responsible.id)" :disabled="!Passenger.responsible?.id">
                 <i class="bi bi-person-fill-check"></i>
                 Ver Responsável
             </button>
@@ -89,20 +89,7 @@ export default {
             responsible: {}
         };
 
-        const schools = [
-            'Homero fernando Milano',
-            'Benedito',
-            'Parque viviane'
-        ];
-
-        const periods = [
-            '08:00 - 12:00',
-            '07:00 - 12:00',
-            '13:00 - 17:00',
-            '18:00 - 22:00'
-        ];
-
-        return { params, Passenger, schools, periods }
+        return { params, Passenger }
     },
     components: {
         TheHeader,
@@ -142,10 +129,11 @@ export default {
             getPassengerById(passengerId)
                 .then((data) => {
                     this.Passenger.namePassenger = data.nome;
-                    
                     this.Passenger.endereco.id = data.endereco.id
-                    this.Passenger.responsiblePassengers = !data.responsavel.nome ? {} : data.responsavel.nome;
-                    this.Passenger.responsible.id = !data.responsavel.id ? {} : data.responsavel.id;
+                    this.Passenger.responsiblePassengers = !data.responsavel?.nome ? '' : data.responsavel.nome;
+                    this.Passenger.responsible.id = !data.responsavel?.id ? '' : data.responsavel.id;
+
+                    console.log('this.Passenger', this.Passenger);
                 })
                 .catch((e) => {
                     console.log('Error consult schools', e.message);

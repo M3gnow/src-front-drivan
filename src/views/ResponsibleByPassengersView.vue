@@ -73,7 +73,7 @@ export default {
     methods: {
         formatDate(dateForFormat) {
             const dateTime = new Date(dateForFormat);
-            const day = dateTime.getDay() > 9 ? dateTime.getDay() : `0${dateTime.getDay()}`;
+            const day = dateTime.getDate() > 9 ? dateTime.getDate() : `0${dateTime.getDate()}`;
             const mounth = (dateTime.getMonth() + 1) <= 9 ? `0${dateTime.getMonth() + 1}` : dateTime.getMonth() + 1;
             const year = dateTime.getFullYear();
             const hours = dateTime.getHours();

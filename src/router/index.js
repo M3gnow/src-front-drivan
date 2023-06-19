@@ -55,7 +55,7 @@ const routes = [
 
   /* View Route */
   { path: '/itineraries/:itinerary_id/route/:route_id', component: RouteView },
-  { path: '/itineraries/:itinerary_id/route', component: RoutePreviewView },
+  { path: '/conductor/:conductor_id/itineraries/:itinerary_id/route', component: RoutePreviewView },
 ]
 
 const router = createRouter({

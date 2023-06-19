@@ -117,7 +117,7 @@ export default {
             this.$router.push('/itinerary');
         },
         goToCreateRoute(itineraryId) {
-            this.$router.push(`/itineraries/${itineraryId}/route`);
+            this.$router.push(`/conductor/${this.params.conductor_id}/itineraries/${itineraryId}/route`);
         }
     }
 }

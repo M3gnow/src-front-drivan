@@ -8,7 +8,7 @@
             <div class="layoutFormnDefault">
                 <div class="input-container">
                     <label class="textWhite" for="nameResponsible">Nome do Responsavel</label>
-                    <input type="text" id="nameResponsible" name="nameResponsible" v-model="Responsible.nameResponsible" placeholder="Nome da escola">
+                    <input type="text" id="nameResponsible" name="nameResponsible" v-model="Responsible.nameResponsible" placeholder="Nome do responsável">
                 </div>
 
                 <div class="input-container">
@@ -76,6 +76,7 @@ export default {
             }
 
             const dataResponsible = builderResponsavelFromService(this.Responsible);
+            console.log('dataResponsible', dataResponsible);
             const promise = createResponsible(dataResponsible)
             
             const schoolId = this.params.school_id
